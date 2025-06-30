@@ -12,7 +12,7 @@ const Avatar = ({
   const avatar = src ? (
     <img className="d-block w-100 h-100" src={src} alt={alt} />
   ) : (
-    <AvatarIcon style={{ width: size, height: size }} role="img" aria-hidden focusable="false" />
+    <AvatarIcon style={{ width: size, height: size, color: '#093055' }} role="img" aria-hidden focusable="false" />
   );
 
   return (
