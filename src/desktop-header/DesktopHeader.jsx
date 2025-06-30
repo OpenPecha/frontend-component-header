@@ -49,7 +49,8 @@ class DesktopHeader extends React.Component {
         <MenuTrigger
           tag="button"
           aria-label={intl.formatMessage(messages['header.label.account.menu.for'], { username })}
-          className="btn btn-outline-primary d-inline-flex align-items-center pl-2 pr-3"
+          className="border-0 bg-transparent d-inline-flex align-items-center px-3 py-2"
+          style={{ color: '#093055' }}
         >
           <DesktopUserMenuToggleSlot avatar={avatar} label={username} />
         </MenuTrigger>
