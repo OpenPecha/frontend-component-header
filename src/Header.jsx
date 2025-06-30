@@ -76,12 +76,13 @@ const Header = ({
         href: config.ACCOUNT_SETTINGS_URL,
         content: intl.formatMessage(messages['header.user.menu.account.settings']),
       },
-      // Users should only see Order History if have a ORDER_HISTORY_URL define in the environment.
-      ...(config.ORDER_HISTORY_URL ? [{
-        type: 'item',
-        href: config.ORDER_HISTORY_URL,
-        content: intl.formatMessage(messages['header.user.menu.order.history']),
-      }] : []),
+      // Order History link removed
+      // Uncomment the following lines if you want to re-enable Order History
+      // ...(config.ORDER_HISTORY_URL ? [{
+      //   type: 'item',
+      //   href: config.ORDER_HISTORY_URL,
+      //   content: intl.formatMessage(messages['header.user.menu.order.history']),
+      // }] : []),
       {
         type: 'item',
         href: config.LOGOUT_URL,
