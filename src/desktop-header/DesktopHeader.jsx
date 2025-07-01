@@ -52,7 +52,7 @@ class DesktopHeader extends React.Component {
           className="border-0 bg-transparent d-inline-flex align-items-center px-3 py-2"
           style={{ color: '#093055' }}
         >
-          <Avatar size="1.5em" src={avatar} alt="" className="mr-2" />
+          <Avatar size="2em" src={avatar} alt="" className="mr-2" loading={this.props.avatarLoading} />
           {username} <CaretIcon role="img" aria-hidden focusable="false" />
         </MenuTrigger>
         <MenuContent className="mb-0 dropdown-menu show dropdown-menu-right pin-right shadow py-2">
