@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Responsive from 'react-responsive';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
@@ -51,6 +51,10 @@ const Header = ({
 }) => {
   const { authenticatedUser, config } = useContext(AppContext);
 
+  // Check if user is authenticated
+
+  // User is authenticated if authenticatedUser is not null
+
   const defaultMainMenu = [
     {
       type: 'item',
@@ -76,12 +80,13 @@ const Header = ({
         href: config.ACCOUNT_SETTINGS_URL,
         content: intl.formatMessage(messages['header.user.menu.account.settings']),
       },
-      // Users should only see Order History if have a ORDER_HISTORY_URL define in the environment.
-      ...(config.ORDER_HISTORY_URL ? [{
-        type: 'item',
-        href: config.ORDER_HISTORY_URL,
-        content: intl.formatMessage(messages['header.user.menu.order.history']),
-      }] : []),
+      // Order History link removed
+      // Uncomment the following lines if you want to re-enable Order History
+      // ...(config.ORDER_HISTORY_URL ? [{
+      //   type: 'item',
+      //   href: config.ORDER_HISTORY_URL,
+      //   content: intl.formatMessage(messages['header.user.menu.order.history']),
+      // }] : []),
       {
         type: 'item',
         href: config.LOGOUT_URL,
@@ -107,18 +112,68 @@ const Header = ({
     },
   ];
 
+  const [avatarState, setAvatarState] = useState({ loading: true, url: null });
+
+  // fetch the profile image URL from the API when the component mounts or authenticatedUser changes
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      // If the user is logged out, we are not loading, and there is no image.
+      if (authenticatedUser === null) {
+        setAvatarState({ loading: false, url: null });
+        return;
+      }
+
+      // If we don't have a username yet, remain in the loading state.
+      if (!authenticatedUser?.username) {
+        setAvatarState({ loading: true, url: null });
+        return;
+      }
+
+      try {
+        const baseUrl = config.LMS_BASE_URL || '';
+        const apiUrl = `${baseUrl}/api/user/v1/accounts/${authenticatedUser.username}`;
+        const response = await fetch(apiUrl, {
+          credentials: 'include',
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const imageUrl = data.profile_image?.image_url_medium;
+          const hasImage = data.profile_image?.has_image;
+
+          // Use the fetched image if it exists and is not a default one.
+          if (imageUrl && hasImage) {
+            setAvatarState({ loading: false, url: imageUrl });
+          } else {
+            // Otherwise, fallback to the default icon.
+            setAvatarState({ loading: false, url: null });
+          }
+        } else {
+          setAvatarState({ loading: false, url: null });
+        }
+      } catch (error) {
+        setAvatarState({ loading: false, url: null });
+      }
+    };
+
+    fetchProfileImage();
+  }, [authenticatedUser, config.LMS_BASE_URL]);
+
   const props = {
     logo: config.LOGO_URL,
     logoAltText: config.SITE_NAME,
     logoDestination: `${config.LMS_BASE_URL}/dashboard`,
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser !== null ? authenticatedUser.username : null,
-    avatar: authenticatedUser !== null ? authenticatedUser.avatar : null,
+    avatar: avatarState.url,
+    avatarLoading: avatarState.loading,
     mainMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : mainMenu,
     secondaryMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : secondaryMenu,
     userMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : userMenu,
     loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
   };
+
 
   return (
     <>

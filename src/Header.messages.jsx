@@ -43,8 +43,8 @@ const messages = defineMessages({
   },
   'header.user.menu.logout': {
     id: 'header.user.menu.logout',
-    defaultMessage: 'Logout',
-    description: 'Logout link',
+    defaultMessage: 'Sign Out',
+    description: 'Sign Out link',
   },
   'header.user.menu.login': {
     id: 'header.user.menu.login',
