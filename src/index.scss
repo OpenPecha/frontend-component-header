@@ -56,15 +56,26 @@ $rounded-pill: 50rem  !default;
 }
 
 .site-header-mobile {
-  height: 4rem;
+  border-bottom: 1px solid #FFAF66;
+  background: var(--pgn-color-white, $white);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 
   .nav-link {
     text-decoration: none;
     cursor: pointer;
   }
 
-  img {
-    height: 2.5rem;
+  .logo {
+    display: block;
+    position: relative;
+    margin-top: -0.5rem;
+    transform: translateY(-0.5rem);
+    
+    img {
+      height: 3.2rem !important;
+      width: auto !important;
+      max-height: none !important;
+    }
   }
   
   // Fix for mobile hover state persisting
@@ -100,7 +111,7 @@ $rounded-pill: 50rem  !default;
     
     &:hover {
       background-color: #F2F4F6 !important;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1) !important;
       outline: none !important;
       border: none !important;
     }
