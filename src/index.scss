@@ -68,8 +68,8 @@ $rounded-pill: 50rem  !default;
   .logo {
     display: block;
     position: relative;
-    margin-top: -0.5rem;
-    transform: translateY(-0.5rem);
+    margin-top: 0;
+    transform: translateY(-0.1rem);
     
     img {
       height: 3.2rem !important;
@@ -125,8 +125,8 @@ $rounded-pill: 50rem  !default;
     display: block;
     box-sizing: content-box;
     position: relative;
-    top: -0.5rem;
-    margin-top: -0.2rem;
+    top: -0.1rem;
+    margin-top: 0;
     height: 3.03rem !important;
     padding: calc(var(--pgn-spacing-spacer-base, $spacer) * 0.75) 0;
     // Add padding to the left of the logo
