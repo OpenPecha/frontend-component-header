@@ -114,9 +114,12 @@ $rounded-pill: 50rem  !default;
     display: block;
     box-sizing: content-box;
     position: relative;
-    top: -.05em;
-    height: 2.8rem !important;
+    top: -0.5rem;
+    margin-top: -0.2rem;
+    height: 3.03rem !important;
     padding: calc(var(--pgn-spacing-spacer-base, $spacer) * 0.75) 0;
+    // Add padding to the left of the logo
+    padding-left: calc(var(--pgn-spacing-spacer-base, $spacer) * 1.75);
     margin-right: var(--pgn-spacing-spacer-base, $spacer);
 
     img {
@@ -129,8 +132,19 @@ $rounded-pill: 50rem  !default;
     .nav-link:focus,
     .nav-link.active,
     .expanded .nav-link {
-      background: var(--pgn-color-bg-active, $component-active-bg);
-      color: var(--pgn-color-active, $component-active-color);
+      background: transparent;
+      color: inherit;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #FC8044;
+      }
     }
   }
   .main-nav {
@@ -145,8 +159,19 @@ $rounded-pill: 50rem  !default;
     .nav-link:focus,
     .nav-link.active,
     .expanded .nav-link {
-      background: var(--pgn-color-bg-active, $component-active-bg);
-      color: var(--pgn-color-active, $component-active-color);
+      background: transparent;
+      color: inherit;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #FC8044;
+      }
     }
 
     .menu {
