@@ -69,11 +69,11 @@ $rounded-pill: 50rem !default;
   .logo {
     display: block !important;
     position: relative !important;
-    margin-top: 0.1rem !important;
-    transform: translateY(-13px) !important;
+    margin-top: -0.1rem !important;
+    transform: translateY(-10px) !important;
 
     img {
-      height: 3rem !important;
+      height: 3.2rem !important;
       width: auto !important;
       max-height: none !important;
     }
