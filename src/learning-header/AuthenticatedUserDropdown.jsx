@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 
+import Avatar from '../Avatar';
 import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
+import { CaretIcon } from '../Icons';
 
 import messages from './messages';
 
-const AuthenticatedUserDropdown = ({ intl, username }) => {
+const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) => {
   const dropdownItems = [
     {
       message: intl.formatMessage(messages.dashboard),
@@ -39,13 +38,19 @@ const AuthenticatedUserDropdown = ({ intl, username }) => {
 
   return (
     <Dropdown className="user-dropdown ml-3">
-      <Dropdown.Toggle variant="outline-primary">
-        <FontAwesomeIcon icon={faUserCircle} className="d-md-none" size="lg" />
+      <Dropdown.Toggle 
+        as="button"
+        bsPrefix="custom-dropdown-toggle"
+        className="border-0 bg-transparent d-inline-flex align-items-center px-3 py-2"
+        style={{ color: '#093055' }}
+      >
+        <Avatar size="1.9rem" src={avatar} alt="" className="mr-2" loading={loading} />
         <span data-hj-suppress className="d-none d-md-inline">
           {username}
         </span>
+        <CaretIcon role="img" aria-hidden focusable="false" className="ml-1" />
       </Dropdown.Toggle>
-      <Dropdown.Menu className="dropdown-menu-right">
+      <Dropdown.Menu className="dropdown-menu-right user-dropdown-menu">
         <LearningUserMenuSlot items={dropdownItems} />
       </Dropdown.Menu>
     </Dropdown>
@@ -55,6 +60,13 @@ const AuthenticatedUserDropdown = ({ intl, username }) => {
 AuthenticatedUserDropdown.propTypes = {
   intl: intlShape.isRequired,
   username: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  loading: PropTypes.bool,
+};
+
+AuthenticatedUserDropdown.defaultProps = {
+  avatar: null,
+  loading: false,
 };
 
 export default injectIntl(AuthenticatedUserDropdown);
