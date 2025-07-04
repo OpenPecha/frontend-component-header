@@ -34,8 +34,8 @@ $rounded-pill: 50rem !default;
 .learning-header {
   min-width: 0;
   height: 4.6rem; // Increased height
-    padding-top: 0.3rem; // Add space between text and top of header
-    border-bottom: 1px solid #FFAF66; // Add orange border at the bottom
+  padding-top: 0.3rem; // Add space between text and top of header
+  border-bottom: 1px solid #FFAF66; // Add orange border at the bottom
   
     // Increase logo size in learning header
     .logo {
@@ -63,9 +63,9 @@ $rounded-pill: 50rem !default;
 
   .user-dropdown .btn {
     height: 6rem; // Increased to match header height
-      display: flex;
-      align-items: center;
-    }
+    display: flex;
+    align-items: center;
+  }
     
     // Styling for avatar dropdown button - matching site-header-desktop
     .border-0.bg-transparent {
