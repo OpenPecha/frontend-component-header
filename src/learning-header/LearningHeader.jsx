@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
@@ -15,7 +15,58 @@ import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
 const LearningHeader = ({
   courseOrg, courseNumber, courseTitle, intl, showUserDropdown,
 }) => {
-  const { authenticatedUser } = useContext(AppContext);
+  const { authenticatedUser, config } = useContext(AppContext);
+
+  // State for avatar URL and loading state
+  const [avatarState, setAvatarState] = useState({ loading: true, url: null });
+
+  // Fetch the profile image URL from the API when the component mounts or authenticatedUser changes
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      // If the user is logged out, we are not loading, and there is no image.
+      if (authenticatedUser === null) {
+        setAvatarState({ loading: false, url: null });
+        return;
+      }
+
+      // If we don't have a username yet, remain in the loading state.
+      if (!authenticatedUser?.username) {
+        setAvatarState({ loading: true, url: null });
+        return;
+      }
+
+      try {
+        const baseUrl = getConfig().LMS_BASE_URL || '';
+        const apiUrl = `${baseUrl}/api/user/v1/accounts/${authenticatedUser.username}`;
+        const response = await fetch(apiUrl, {
+          credentials: 'include',
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const imageUrl = data.profile_image?.image_url_medium;
+          const hasImage = data.profile_image?.has_image;
+
+          // Use the fetched image if it exists and is not a default one.
+          if (imageUrl && hasImage) {
+            setAvatarState({ loading: false, url: imageUrl });
+          } else {
+            // Otherwise, fallback to the default icon.
+            setAvatarState({ loading: false, url: null });
+          }
+        } else {
+          // If the request fails, fallback to the default icon.
+          setAvatarState({ loading: false, url: null });
+        }
+      } catch (error) {
+        // If there's an error, fallback to the default icon.
+        setAvatarState({ loading: false, url: null });
+      }
+    };
+
+    fetchProfileImage();
+  }, [authenticatedUser]);
 
   const headerLogo = (
     <LogoSlot
@@ -34,15 +85,17 @@ const LearningHeader = ({
           <CourseInfoSlot courseOrg={courseOrg} courseNumber={courseNumber} courseTitle={courseTitle} />
         </div>
         {showUserDropdown && authenticatedUser && (
-        <>
-          <LearningHelpSlot />
-          <AuthenticatedUserDropdown
-            username={authenticatedUser.username}
-          />
-        </>
+          <>
+            <LearningHelpSlot />
+            <AuthenticatedUserDropdown
+              username={authenticatedUser.username}
+              avatar={avatarState.url}
+              loading={avatarState.loading}
+            />
+          </>
         )}
         {showUserDropdown && !authenticatedUser && (
-        <AnonymousUserMenu />
+          <AnonymousUserMenu />
         )}
       </div>
     </header>
