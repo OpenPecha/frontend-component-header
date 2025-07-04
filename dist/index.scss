@@ -3,7 +3,7 @@ $blue: #007db8;
 $white: #fff;
 $component-active-bg: #0A3055FF !default;
 $component-active-color: $white !default;
-$rounded-pill: 50rem  !default;
+$rounded-pill: 50rem !default;
 
 @import './Menu/menu.scss';
 @import './studio-header/StudioHeader.scss';
@@ -14,24 +14,41 @@ $rounded-pill: 50rem  !default;
 
 .icon-button {
   display: inline-flex;
-  line-height: 3rem;
+  line-height: 4rem;
   background: transparent;
   vertical-align: middle;
   text-align: center;
   border: none;
-  height: 3rem;
-  width: 3rem;
+  height: 4rem;
+  width: 4rem;
   padding: .75rem;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: rgba(0, 0, 0, .1);
   }
 }
 
 .learning-header {
   min-width: 0;
+  height: 4.6rem; // Increased height
+  padding-top: 0.3rem; // Add space between text and top of header
+  border-bottom: 1px solid #FFAF66; // Add orange border at the bottom
+  
+  // Increase logo size in learning header
+  .logo {
+    height: 3.03rem !important;
+    padding-top: -0.3rem !important  ;
+    padding-left: calc(var(--pgn-spacing-spacer-base, $spacer) * 1.75) !important;
+    margin-right: var(--pgn-spacing-spacer-base, $spacer) !important;
+    
+    img {
+      height: 100% !important;
+      width: auto !important;
+    }
+  }
 
   .course-title-lockup {
     min-width: 0;
@@ -45,7 +62,99 @@ $rounded-pill: 50rem  !default;
   }
 
   .user-dropdown .btn {
-    height: 3rem;
+    height: 6rem; // Increased to match header height
+    display: flex;
+    align-items: center;
+  }
+  
+  // Styling for avatar dropdown button - matching site-header-desktop
+  .border-0.bg-transparent {
+    border-radius: 20px;
+    transition: all 0.2s ease;
+
+    &:focus,
+    &:active,
+    &.show,
+    &:focus-visible,
+    &.dropdown-toggle.show {
+      outline: none !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    &:hover {
+      background-color: #F2F4F6 !important;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+  
+  // Custom dropdown toggle styling
+  .custom-dropdown-toggle {
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    
+    &:focus,
+    &:active,
+    &.show,
+    &:focus-visible {
+      box-shadow: none !important;
+      outline: none !important;
+      border: none !important;
+    }
+    
+    &:hover {
+      background-color: #F2F4F6;
+      border-radius: 20px;
+    }
+  }
+  
+  // Global override for dropdown buttons in the learning header
+  .learning-header {
+    .dropdown-toggle,
+    .dropdown-toggle.btn,
+    .dropdown-toggle.btn-light,
+    .dropdown-toggle.btn-primary,
+    .dropdown-toggle.btn-outline-primary,
+    button.dropdown-toggle {
+      box-shadow: none !important;
+      outline: none !important;
+      border: none !important;
+      
+      &:focus,
+      &:active,
+      &.show,
+      &:focus-visible,
+      &.active,
+      &:hover {
+        box-shadow: none !important;
+        outline: none !important;
+        border: none !important;
+      }
+    }
+  }
+  
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  // Custom styling for user dropdown menu
+  .user-dropdown-menu {
+    width: 180px; // Reduced width
+    min-width: 180px;
+    
+    .sign-out-item {
+      margin-top: 0.5rem;
+      border-top: 1px solid #e1e1e1;
+      padding-top: 0.5rem;
+    }
   }
 }
 
@@ -56,24 +165,37 @@ $rounded-pill: 50rem  !default;
 }
 
 .site-header-mobile {
-  height: 3rem;
+  border-bottom: 1px solid #FFAF66;
+  background: var(--pgn-color-white, $white);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 
   .nav-link {
     text-decoration: none;
     cursor: pointer;
   }
 
-  img {
-    height: 2rem;
+  .logo {
+    display: block !important;
+    position: relative !important;
+    margin-top: -0.1rem !important;
+    transform: translateY(-5px) !important;
+
+    img {
+      height: 2.5rem !important;
+      width: auto !important;
+      max-height: none !important;
+    }
   }
-  
+
   // Fix for mobile hover state persisting
   .icon-button {
-    &:active, &:focus {
+
+    &:active,
+    &:focus {
       background-color: transparent !important;
       box-shadow: none !important;
     }
-    
+
     &.expanded {
       background-color: #F2F4F6 !important;
       border-radius: 12px;
@@ -83,22 +205,25 @@ $rounded-pill: 50rem  !default;
 
 
 .site-header-desktop {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+  border-bottom: 1px solid #FFAF66;
   background: var(--pgn-color-white, $white);
-  
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+
+
   // Styling for avatar dropdown button
   .border-0.bg-transparent {
     border-radius: 20px;
     transition: all 0.2s ease;
-    
-    &:focus, &:active {
+
+    &:focus,
+    &:active {
       outline: none !important;
       border: none !important;
     }
-    
+
     &:hover {
       background-color: #F2F4F6 !important;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1) !important;
       outline: none !important;
       border: none !important;
     }
@@ -109,31 +234,48 @@ $rounded-pill: 50rem  !default;
   }
 
   .logo {
-    display: block;
-    box-sizing: content-box;
-    position: relative;
-    top: -.05em;
-    height: 1.75rem !important;
-    padding: var(--pgn-spacing-spacer-base, $spacer) 0;
-    margin-right: var(--pgn-spacing-spacer-base, $spacer);
+    display: block !important;
+    box-sizing: content-box !important;
+    position: relative !important;
+    top: -1px !important;
+    margin-top: 0.1rem !important;
+    height: 3.03rem !important;
+    padding: calc(var(--pgn-spacing-spacer-base, $spacer) * 0.75) 0 !important;
+    // Add padding to the left of the logo
+    padding-left: calc(var(--pgn-spacing-spacer-base, $spacer) * 1.75) !important;
+    margin-right: var(--pgn-spacing-spacer-base, $spacer) !important;
 
     img {
       display: block;
       height: 100% !important;
     }
   }
+
   .secondary-menu-container {
+
     .nav-link:hover,
     .nav-link:focus,
     .nav-link.active,
     .expanded .nav-link {
-      background: var(--pgn-color-bg-active, $component-active-bg);
-      color: var(--pgn-color-active, $component-active-color);
+      background: transparent;
+      color: inherit;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #FC8044;
+      }
     }
   }
+
   .main-nav {
     .nav-link {
-      padding: 1.125rem var(--pgn-spacing-spacer-base, $spacer);
+      padding: 1.43rem var(--pgn-spacing-spacer-base, $spacer);
       text-decoration: none;
       font-weight: 500;
       letter-spacing: .01em;
@@ -143,8 +285,19 @@ $rounded-pill: 50rem  !default;
     .nav-link:focus,
     .nav-link.active,
     .expanded .nav-link {
-      background: var(--pgn-color-bg-active, $component-active-bg);
-      color: var(--pgn-color-active, $component-active-color);
+      background: transparent;
+      color: inherit;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #FC8044;
+      }
     }
 
     .menu {
@@ -154,7 +307,7 @@ $rounded-pill: 50rem  !default;
         border-top: solid 2px var(--pgn-color-bg-active);
         left: 0;
         right: 0;
-        box-shadow: var(--pgn-elevation-box-shadow-down-1, 0 1px 2px rgba(0,0,0,.25));
+        box-shadow: var(--pgn-elevation-box-shadow-down-1, 0 1px 2px rgba(0, 0, 0, .25));
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
         padding: var(--pgn-spacing-spacer-base, $spacer);

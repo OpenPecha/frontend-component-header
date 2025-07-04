@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
+import Avatar from '../Avatar';
 import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
+import { CaretIcon } from '../Icons';
 import messages from './messages';
 const AuthenticatedUserDropdown = _ref => {
   let {
     intl,
-    username
+    username,
+    avatar,
+    loading = false
   } = _ref;
   const dropdownItems = [{
     message: intl.formatMessage(messages.dashboard),
@@ -35,23 +37,41 @@ const AuthenticatedUserDropdown = _ref => {
   return /*#__PURE__*/React.createElement(Dropdown, {
     className: "user-dropdown ml-3"
   }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
-    variant: "outline-primary"
-  }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
-    icon: faUserCircle,
-    className: "d-md-none",
-    size: "lg"
+    as: "button",
+    bsPrefix: "custom-dropdown-toggle",
+    className: "border-0 bg-transparent d-inline-flex align-items-center px-3 py-2",
+    style: {
+      color: '#093055'
+    }
+  }, /*#__PURE__*/React.createElement(Avatar, {
+    size: "1.9rem",
+    src: avatar,
+    alt: "",
+    className: "mr-2",
+    loading: loading
   }), /*#__PURE__*/React.createElement("span", {
     "data-hj-suppress": true,
     className: "d-none d-md-inline"
-  }, username)), /*#__PURE__*/React.createElement(Dropdown.Menu, {
-    className: "dropdown-menu-right"
+  }, username), /*#__PURE__*/React.createElement(CaretIcon, {
+    role: "img",
+    "aria-hidden": true,
+    focusable: "false",
+    className: "ml-1"
+  })), /*#__PURE__*/React.createElement(Dropdown.Menu, {
+    className: "dropdown-menu-right user-dropdown-menu"
   }, /*#__PURE__*/React.createElement(LearningUserMenuSlot, {
     items: dropdownItems
   })));
 };
 AuthenticatedUserDropdown.propTypes = {
   intl: intlShape.isRequired,
-  username: PropTypes.string.isRequired
+  username: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  loading: PropTypes.bool
+};
+AuthenticatedUserDropdown.defaultProps = {
+  avatar: null,
+  loading: false
 };
 export default injectIntl(AuthenticatedUserDropdown);
 //# sourceMappingURL=AuthenticatedUserDropdown.js.map
