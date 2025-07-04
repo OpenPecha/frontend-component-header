@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 
 import LearningUserMenuToggleSlot from '../plugin-slots/LearningUserMenuToggleSlot';
 import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
+import { CaretIcon } from '../Icons';
 
 import messages from './messages';
 
-const AuthenticatedUserDropdown = ({ intl, username }) => {
+const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) => {
   const dropdownItems = [
     {
       message: intl.formatMessage(messages.dashboard),
@@ -42,7 +44,7 @@ const AuthenticatedUserDropdown = ({ intl, username }) => {
       <Dropdown.Toggle variant="outline-primary" aria-label={intl.formatMessage(messages.userOptionsDropdownLabel)}>
         <LearningUserMenuToggleSlot label={username} icon={faUserCircle} />
       </Dropdown.Toggle>
-      <Dropdown.Menu className="dropdown-menu-right">
+      <Dropdown.Menu className="dropdown-menu-right user-dropdown-menu">
         <LearningUserMenuSlot items={dropdownItems} />
       </Dropdown.Menu>
     </Dropdown>
@@ -52,6 +54,13 @@ const AuthenticatedUserDropdown = ({ intl, username }) => {
 AuthenticatedUserDropdown.propTypes = {
   intl: intlShape.isRequired,
   username: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  loading: PropTypes.bool,
+};
+
+AuthenticatedUserDropdown.defaultProps = {
+  avatar: null,
+  loading: false,
 };
 
 export default injectIntl(AuthenticatedUserDropdown);
