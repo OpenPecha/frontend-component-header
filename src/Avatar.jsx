@@ -8,11 +8,22 @@ const Avatar = ({
   src,
   alt,
   className,
+  loading,
 }) => {
+  // While loading, render a placeholder to prevent the default icon from flashing.
+  if (loading) {
+    return (
+      <span
+        style={{ height: size, width: size }}
+        className={`avatar overflow-hidden d-inline-flex rounded-circle ${className}`}
+      />
+    );
+  }
+
   const avatar = src ? (
     <img className="d-block w-100 h-100" src={src} alt={alt} />
   ) : (
-    <AvatarIcon style={{ width: size, height: size }} role="img" aria-hidden focusable="false" />
+    <AvatarIcon style={{ width: size, height: size, color: '#093055' }} role="img" aria-hidden focusable="false" />
   );
 
   return (
@@ -26,6 +37,7 @@ const Avatar = ({
 };
 
 Avatar.propTypes = {
+  loading: PropTypes.bool,
   src: PropTypes.string,
   size: PropTypes.string,
   alt: PropTypes.string,
@@ -33,6 +45,7 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
+  loading: false,
   src: null,
   size: '2rem',
   alt: null,
