@@ -1,10 +1,8 @@
 import React from 'react';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 import DesktopHeaderUserMenu, { desktopUserMenuDataShape } from '../../desktop-header/DesktopHeaderUserMenu';
-const DesktopUserMenuSlot = _ref => {
-  let {
-    menu
-  } = _ref;
+var DesktopUserMenuSlot = function DesktopUserMenuSlot(_ref) {
+  var menu = _ref.menu;
   return /*#__PURE__*/React.createElement(PluginSlot, {
     id: "desktop_user_menu_slot",
     slotOptions: {
