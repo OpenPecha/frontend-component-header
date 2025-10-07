@@ -11,6 +11,7 @@ import CourseInfoSlot from '../plugin-slots/CourseInfoSlot';
 import { courseInfoDataShape } from './LearningHeaderCourseInfo';
 import messages from './messages';
 import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
+import UserbackWidget from '../UserbackWidget';
 
 const LearningHeader = ({
   courseOrg, courseNumber, courseTitle, intl, showUserDropdown,
@@ -98,6 +99,7 @@ const LearningHeader = ({
           <AnonymousUserMenu />
         )}
       </div>
+      <UserbackWidget />
     </header>
   );
 };

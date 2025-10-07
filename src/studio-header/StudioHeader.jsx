@@ -6,6 +6,7 @@ import { ensureConfig } from '@edx/frontend-platform';
 
 import MobileHeader from './MobileHeader';
 import HeaderBody from './HeaderBody';
+import UserbackWidget from '../UserbackWidget';
 
 ensureConfig([
   'STUDIO_BASE_URL',
@@ -47,6 +48,7 @@ const StudioHeader = ({
       <Responsive minWidth={842}>
         <HeaderBody {...props} />
       </Responsive>
+      <UserbackWidget />
     </div>
   );
 };
