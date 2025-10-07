@@ -5,6 +5,7 @@ import { AppContext } from '@edx/frontend-platform/react';
 import { ensureConfig } from '@edx/frontend-platform';
 import MobileHeader from './MobileHeader';
 import HeaderBody from './HeaderBody';
+import UserbackWidget from '../UserbackWidget';
 ensureConfig(['STUDIO_BASE_URL', 'SITE_NAME', 'LOGOUT_URL', 'LOGIN_URL', 'LOGO_URL'], 'Studio Header component');
 var StudioHeader = function StudioHeader(_ref) {
   var number = _ref.number,
@@ -45,7 +46,7 @@ var StudioHeader = function StudioHeader(_ref) {
     maxWidth: 841
   }, /*#__PURE__*/React.createElement(MobileHeader, props)), /*#__PURE__*/React.createElement(Responsive, {
     minWidth: 842
-  }, /*#__PURE__*/React.createElement(HeaderBody, props)));
+  }, /*#__PURE__*/React.createElement(HeaderBody, props)), /*#__PURE__*/React.createElement(UserbackWidget, null));
 };
 StudioHeader.propTypes = {
   number: PropTypes.string,

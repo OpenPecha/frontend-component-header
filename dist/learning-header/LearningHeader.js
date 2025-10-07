@@ -20,6 +20,7 @@ import CourseInfoSlot from '../plugin-slots/CourseInfoSlot';
 import { courseInfoDataShape } from './LearningHeaderCourseInfo';
 import messages from './messages';
 import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
+import UserbackWidget from '../UserbackWidget';
 var LearningHeader = function LearningHeader(_ref) {
   var courseOrg = _ref.courseOrg,
     courseNumber = _ref.courseNumber,
@@ -157,7 +158,7 @@ var LearningHeader = function LearningHeader(_ref) {
     username: authenticatedUser.username,
     avatar: avatarState.url,
     loading: avatarState.loading
-  })), showUserDropdown && !authenticatedUser && /*#__PURE__*/React.createElement(AnonymousUserMenu, null)));
+  })), showUserDropdown && !authenticatedUser && /*#__PURE__*/React.createElement(AnonymousUserMenu, null)), /*#__PURE__*/React.createElement(UserbackWidget, null));
 };
 LearningHeader.propTypes = {
   courseOrg: courseInfoDataShape.courseOrg,
