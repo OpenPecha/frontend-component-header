@@ -13,6 +13,7 @@ import {
 import PropTypes from 'prop-types';
 import DesktopHeaderSlot from './plugin-slots/DesktopHeaderSlot';
 import MobileHeaderSlot from './plugin-slots/MobileHeaderSlot';
+import UserbackWidget from './UserbackWidget';
 
 import messages from './Header.messages';
 
@@ -174,7 +175,6 @@ const Header = ({
     loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
   };
 
-
   return (
     <>
       <Responsive maxWidth={769}>
@@ -183,6 +183,7 @@ const Header = ({
       <Responsive minWidth={769}>
         <DesktopHeaderSlot props={props} />
       </Responsive>
+      <UserbackWidget />
     </>
   );
 };
