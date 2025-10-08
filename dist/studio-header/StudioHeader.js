@@ -7,35 +7,38 @@ import MobileHeader from './MobileHeader';
 import HeaderBody from './HeaderBody';
 import UserbackWidget from '../UserbackWidget';
 ensureConfig(['STUDIO_BASE_URL', 'SITE_NAME', 'LOGOUT_URL', 'LOGIN_URL', 'LOGO_URL'], 'Studio Header component');
-var StudioHeader = function StudioHeader(_ref) {
-  var number = _ref.number,
-    org = _ref.org,
-    title = _ref.title,
-    containerProps = _ref.containerProps,
-    isHiddenMainMenu = _ref.isHiddenMainMenu,
-    mainMenuDropdowns = _ref.mainMenuDropdowns,
-    outlineLink = _ref.outlineLink,
-    searchButtonAction = _ref.searchButtonAction,
-    isNewHomePage = _ref.isNewHomePage;
-  var _useContext = useContext(AppContext),
-    authenticatedUser = _useContext.authenticatedUser,
-    config = _useContext.config;
-  var props = {
+const StudioHeader = _ref => {
+  let {
+    number,
+    org,
+    title,
+    containerProps,
+    isHiddenMainMenu,
+    mainMenuDropdowns,
+    outlineLink,
+    searchButtonAction,
+    isNewHomePage
+  } = _ref;
+  const {
+    authenticatedUser,
+    config
+  } = useContext(AppContext);
+  const props = {
     logo: config.LOGO_URL,
-    logoAltText: "Studio ".concat(config.SITE_NAME),
-    number: number,
-    org: org,
-    title: title,
-    containerProps: containerProps,
-    username: authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.username,
-    isAdmin: authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.administrator,
-    authenticatedUserAvatar: authenticatedUser === null || authenticatedUser === void 0 ? void 0 : authenticatedUser.avatar,
+    logoAltText: `Studio ${config.SITE_NAME}`,
+    number,
+    org,
+    title,
+    containerProps,
+    username: authenticatedUser?.username,
+    isAdmin: authenticatedUser?.administrator,
+    authenticatedUserAvatar: authenticatedUser?.avatar,
     studioBaseUrl: isNewHomePage ? '/home' : config.STUDIO_BASE_URL,
     logoutUrl: config.LOGOUT_URL,
-    isHiddenMainMenu: isHiddenMainMenu,
-    mainMenuDropdowns: mainMenuDropdowns,
-    outlineLink: outlineLink,
-    searchButtonAction: searchButtonAction
+    isHiddenMainMenu,
+    mainMenuDropdowns,
+    outlineLink,
+    searchButtonAction
   };
   return /*#__PURE__*/React.createElement("div", {
     className: "studio-header"
