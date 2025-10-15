@@ -1,28 +1,26 @@
 import { getConfig } from '@edx/frontend-platform';
 import messages from './messages';
-const getUserMenuItems = _ref => {
-  let {
-    studioBaseUrl,
-    logoutUrl,
-    intl,
-    isAdmin
-  } = _ref;
-  let items = [{
-    href: `${studioBaseUrl}`,
+var getUserMenuItems = function getUserMenuItems(_ref) {
+  var studioBaseUrl = _ref.studioBaseUrl,
+    logoutUrl = _ref.logoutUrl,
+    intl = _ref.intl,
+    isAdmin = _ref.isAdmin;
+  var items = [{
+    href: "".concat(studioBaseUrl),
     title: intl.formatMessage(messages['header.user.menu.studio'])
   }, {
-    href: `${logoutUrl}`,
+    href: "".concat(logoutUrl),
     title: intl.formatMessage(messages['header.user.menu.logout'])
   }];
   if (isAdmin) {
     items = [{
-      href: `${studioBaseUrl}`,
+      href: "".concat(studioBaseUrl),
       title: intl.formatMessage(messages['header.user.menu.studio'])
     }, {
-      href: `${getConfig().STUDIO_BASE_URL}/maintenance`,
+      href: "".concat(getConfig().STUDIO_BASE_URL, "/maintenance"),
       title: intl.formatMessage(messages['header.user.menu.maintenance'])
     }, {
-      href: `${logoutUrl}`,
+      href: "".concat(logoutUrl),
       title: intl.formatMessage(messages['header.user.menu.logout'])
     }];
   }

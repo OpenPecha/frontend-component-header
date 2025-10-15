@@ -1,4 +1,4 @@
-const _excluded = ["className"];
+var _excluded = ["className"];
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
@@ -13,38 +13,34 @@ import UserMenu from './UserMenu';
 import BrandNav from './BrandNav';
 import NavDropdownMenu from './NavDropdownMenu';
 import messages from './messages';
-const HeaderBody = _ref => {
-  let {
-    logo,
-    logoAltText,
-    number,
-    org,
-    title,
-    username,
-    isAdmin,
-    studioBaseUrl,
-    logoutUrl,
-    authenticatedUserAvatar,
-    isMobile,
-    setModalPopupTarget,
-    toggleModalPopup,
-    isModalPopupOpen,
-    isHiddenMainMenu,
-    mainMenuDropdowns,
-    outlineLink,
-    searchButtonAction,
-    containerProps
-  } = _ref;
-  const intl = useIntl();
-  const renderBrandNav = /*#__PURE__*/React.createElement(BrandNav, {
-    studioBaseUrl,
-    logo,
-    logoAltText
+var HeaderBody = function HeaderBody(_ref) {
+  var logo = _ref.logo,
+    logoAltText = _ref.logoAltText,
+    number = _ref.number,
+    org = _ref.org,
+    title = _ref.title,
+    username = _ref.username,
+    isAdmin = _ref.isAdmin,
+    studioBaseUrl = _ref.studioBaseUrl,
+    logoutUrl = _ref.logoutUrl,
+    authenticatedUserAvatar = _ref.authenticatedUserAvatar,
+    isMobile = _ref.isMobile,
+    setModalPopupTarget = _ref.setModalPopupTarget,
+    toggleModalPopup = _ref.toggleModalPopup,
+    isModalPopupOpen = _ref.isModalPopupOpen,
+    isHiddenMainMenu = _ref.isHiddenMainMenu,
+    mainMenuDropdowns = _ref.mainMenuDropdowns,
+    outlineLink = _ref.outlineLink,
+    searchButtonAction = _ref.searchButtonAction,
+    containerProps = _ref.containerProps;
+  var intl = useIntl();
+  var renderBrandNav = /*#__PURE__*/React.createElement(BrandNav, {
+    studioBaseUrl: studioBaseUrl,
+    logo: logo,
+    logoAltText: logoAltText
   });
-  const _ref2 = containerProps || {},
-    {
-      className: containerClassName
-    } = _ref2,
+  var _ref2 = containerProps || {},
+    containerClassName = _ref2.className,
     restContainerProps = _objectWithoutProperties(_ref2, _excluded);
   return /*#__PURE__*/React.createElement(Container, _extends({
     size: "xl",
@@ -65,24 +61,22 @@ const HeaderBody = _ref => {
   }, /*#__PURE__*/React.createElement(Row, {
     className: "m-0 flex-nowrap"
   }, renderBrandNav, /*#__PURE__*/React.createElement(CourseLockUp, {
-    outlineLink,
-    number,
-    org,
-    title
+    outlineLink: outlineLink,
+    number: number,
+    org: org,
+    title: title
   }))), isMobile ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ActionRow.Spacer, null), renderBrandNav) : /*#__PURE__*/React.createElement(Nav, {
     "data-testid": "desktop-menu",
     className: "ml-2"
-  }, mainMenuDropdowns.map(dropdown => {
-    const {
-      id,
-      buttonTitle,
-      items
-    } = dropdown;
+  }, mainMenuDropdowns.map(function (dropdown) {
+    var id = dropdown.id,
+      buttonTitle = dropdown.buttonTitle,
+      items = dropdown.items;
     return /*#__PURE__*/React.createElement(NavDropdownMenu, {
       key: id,
-      id,
-      buttonTitle,
-      items
+      id: id,
+      buttonTitle: buttonTitle,
+      items: items
     });
   }))), /*#__PURE__*/React.createElement(ActionRow.Spacer, null), searchButtonAction && /*#__PURE__*/React.createElement(Nav, null, /*#__PURE__*/React.createElement(IconButton, {
     src: Search,
@@ -91,11 +85,11 @@ const HeaderBody = _ref => {
     "aria-label": intl.formatMessage(messages['header.label.search.nav']),
     alt: intl.formatMessage(messages['header.label.search.nav'])
   })), /*#__PURE__*/React.createElement(Nav, null, /*#__PURE__*/React.createElement(UserMenu, {
-    username,
-    studioBaseUrl,
-    logoutUrl,
-    authenticatedUserAvatar,
-    isAdmin
+    username: username,
+    studioBaseUrl: studioBaseUrl,
+    logoutUrl: logoutUrl,
+    authenticatedUserAvatar: authenticatedUserAvatar,
+    isAdmin: isAdmin
   }))));
 };
 HeaderBody.propTypes = {

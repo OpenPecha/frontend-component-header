@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const LearningHeaderCourseInfo = _ref => {
-  let {
-    courseOrg,
-    courseNumber,
-    courseTitle
-  } = _ref;
+var LearningHeaderCourseInfo = function LearningHeaderCourseInfo(_ref) {
+  var courseOrg = _ref.courseOrg,
+    courseNumber = _ref.courseNumber,
+    courseTitle = _ref.courseTitle;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minWidth: 0
@@ -16,7 +14,7 @@ const LearningHeaderCourseInfo = _ref => {
     className: "d-block m-0 font-weight-bold course-title"
   }, courseTitle));
 };
-export const courseInfoDataShape = {
+export var courseInfoDataShape = {
   courseOrg: PropTypes.string,
   courseNumber: PropTypes.string,
   courseTitle: PropTypes.string
