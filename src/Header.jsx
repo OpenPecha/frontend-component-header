@@ -59,7 +59,7 @@ const Header = ({
   const defaultMainMenu = [
     {
       type: 'item',
-      href: `${config.LMS_BASE_URL}/dashboard`,
+      href: `${config.LMS_BASE_URL}`,
       content: intl.formatMessage(messages['header.links.courses']),
     },
   ];
@@ -68,7 +68,7 @@ const Header = ({
     items: [
       {
         type: 'item',
-        href: `${config.LMS_BASE_URL}/dashboard`,
+        href: `${config.LMS_BASE_URL}`,
         content: intl.formatMessage(messages['header.user.menu.dashboard']),
       },
       {
@@ -164,7 +164,7 @@ const Header = ({
   const props = {
     logo: config.LOGO_URL,
     logoAltText: config.SITE_NAME,
-    logoDestination: `${config.LMS_BASE_URL}/dashboard`,
+    logoDestination: `${config.LMS_BASE_URL}`,
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser !== null ? authenticatedUser.username : null,
     avatar: avatarState.url,

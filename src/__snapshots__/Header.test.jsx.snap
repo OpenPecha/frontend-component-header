@@ -18,7 +18,7 @@ exports[`<Header /> renders correctly for anonymous desktop 1`] = `
     >
       <a
         className="logo"
-        href="http://localhost:18000/dashboard"
+        href="http://localhost:18000/"
       >
         <img
           alt="edX"
@@ -32,7 +32,7 @@ exports[`<Header /> renders correctly for anonymous desktop 1`] = `
       >
         <a
           className="nav-link"
-          href="http://localhost:18000/dashboard"
+          href="http://localhost:18000/"
           onClick={null}
         >
           Courses
@@ -133,7 +133,7 @@ exports[`<Header /> renders correctly for anonymous mobile 1`] = `
   >
     <a
       className="logo"
-      href="http://localhost:18000/dashboard"
+      href="http://localhost:18000/"
       itemType="http://schema.org/Organization"
     >
       <img
@@ -215,7 +215,7 @@ exports[`<Header /> renders correctly for authenticated desktop 1`] = `
     >
       <a
         className="logo"
-        href="http://localhost:18000/dashboard"
+        href="http://localhost:18000/"
       >
         <img
           alt="edX"
@@ -229,7 +229,7 @@ exports[`<Header /> renders correctly for authenticated desktop 1`] = `
       >
         <a
           className="nav-link"
-          href="http://localhost:18000/dashboard"
+          href="http://localhost:18000/"
           onClick={null}
         >
           Courses
@@ -380,7 +380,7 @@ exports[`<Header /> renders correctly for authenticated mobile 1`] = `
   >
     <a
       className="logo"
-      href="http://localhost:18000/dashboard"
+      href="http://localhost:18000/"
       itemType="http://schema.org/Organization"
     >
       <img
