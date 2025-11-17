@@ -4,12 +4,15 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { OverlayTrigger, Tooltip } from '@openedx/paragon';
 import { Link } from 'react-router-dom';
 import messages from './messages';
-var CourseLockUp = function CourseLockUp(_ref) {
-  var outlineLink = _ref.outlineLink,
-    org = _ref.org,
-    number = _ref.number,
-    title = _ref.title,
-    intl = _ref.intl;
+const CourseLockUp = _ref => {
+  let {
+    outlineLink,
+    org,
+    number,
+    title,
+    // injected
+    intl
+  } = _ref;
   return /*#__PURE__*/React.createElement(OverlayTrigger, {
     placement: "bottom",
     overlay: /*#__PURE__*/React.createElement(Tooltip, {
