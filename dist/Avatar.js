@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AvatarIcon } from './Icons';
-var Avatar = function Avatar(_ref) {
-  var size = _ref.size,
-    src = _ref.src,
-    alt = _ref.alt,
-    className = _ref.className,
-    loading = _ref.loading;
+const Avatar = _ref => {
+  let {
+    size,
+    src,
+    alt,
+    className,
+    loading
+  } = _ref;
   // While loading, render a placeholder to prevent the default icon from flashing.
   if (loading) {
     return /*#__PURE__*/React.createElement("span", {
@@ -14,10 +16,10 @@ var Avatar = function Avatar(_ref) {
         height: size,
         width: size
       },
-      className: "avatar overflow-hidden d-inline-flex rounded-circle ".concat(className)
+      className: `avatar overflow-hidden d-inline-flex rounded-circle ${className}`
     });
   }
-  var avatar = src ? /*#__PURE__*/React.createElement("img", {
+  const avatar = src ? /*#__PURE__*/React.createElement("img", {
     className: "d-block w-100 h-100",
     src: src,
     alt: alt
@@ -36,7 +38,7 @@ var Avatar = function Avatar(_ref) {
       height: size,
       width: size
     },
-    className: "avatar overflow-hidden d-inline-flex rounded-circle ".concat(className)
+    className: `avatar overflow-hidden d-inline-flex rounded-circle ${className}`
   }, avatar);
 };
 Avatar.propTypes = {

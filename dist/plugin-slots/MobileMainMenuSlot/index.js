@@ -1,8 +1,10 @@
 import React from 'react';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 import MobileHeaderMainMenu, { mobileHeaderMainMenuDataShape } from '../../mobile-header/MobileHeaderMainMenu';
-var MobileMainMenuSlot = function MobileMainMenuSlot(_ref) {
-  var menu = _ref.menu;
+const MobileMainMenuSlot = _ref => {
+  let {
+    menu
+  } = _ref;
   return /*#__PURE__*/React.createElement(PluginSlot, {
     id: "mobile_main_menu_slot",
     slotOptions: {
