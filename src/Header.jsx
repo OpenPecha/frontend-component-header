@@ -59,7 +59,7 @@ const Header = ({
   const defaultMainMenu = [
     {
       type: 'item',
-      href: `${config.LMS_BASE_URL}`,
+      href: `${config.LMS_BASE_URL}/dashboard`,
       content: intl.formatMessage(messages['header.links.courses']),
     },
   ];
