@@ -14,7 +14,7 @@ const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) 
   const dropdownItems = [
     {
       message: intl.formatMessage(messages.dashboard),
-      href: `${getConfig().LMS_BASE_URL}/learner-dashboard/`,
+      href: `${getConfig().LMS_BASE_URL}/dashboard`,
     },
     {
       message: intl.formatMessage(messages.profile),

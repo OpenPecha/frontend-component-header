@@ -68,7 +68,7 @@ const Header = ({
     items: [
       {
         type: 'item',
-        href: `${config.LMS_BASE_URL}/learner-dashboard/`,
+        href: `${config.LMS_BASE_URL}/dashboard`,
         content: intl.formatMessage(messages['header.user.menu.dashboard']),
       },
       {
