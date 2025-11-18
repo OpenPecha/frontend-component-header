@@ -3,7 +3,7 @@ const messages = defineMessages({
   'header.links.courses': {
     id: 'header.links.courses',
     defaultMessage: 'Dashboard',
-    description: 'Link to the learner course dashboard'
+    description: 'Link to the learner dashboard'
   },
   'header.links.programs': {
     id: 'header.links.programs',

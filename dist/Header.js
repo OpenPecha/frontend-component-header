@@ -48,14 +48,14 @@ const Header = _ref => {
 
   const defaultMainMenu = [{
     type: 'item',
-    href: `${config.LMS_BASE_URL}`,
+    href: `${config.LMS_BASE_URL}/dashboard`,
     content: intl.formatMessage(messages['header.links.courses'])
   }];
   const defaultUserMenu = authenticatedUser === null ? [] : [{
     heading: '',
     items: [{
       type: 'item',
-      href: `${config.LMS_BASE_URL}`,
+      href: `${config.LMS_BASE_URL}/dashboard`,
       content: intl.formatMessage(messages['header.user.menu.dashboard'])
     }, {
       type: 'item',

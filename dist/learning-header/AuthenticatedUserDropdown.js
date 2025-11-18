@@ -16,7 +16,7 @@ const AuthenticatedUserDropdown = _ref => {
   } = _ref;
   const dropdownItems = [{
     message: intl.formatMessage(messages.dashboard),
-    href: `${getConfig().LMS_BASE_URL}`
+    href: `${getConfig().LMS_BASE_URL}/dashboard`
   }, {
     message: intl.formatMessage(messages.profile),
     href: `${getConfig().ACCOUNT_PROFILE_URL}/u/${username}`
