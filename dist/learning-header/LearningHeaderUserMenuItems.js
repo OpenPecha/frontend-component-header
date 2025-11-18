@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
-var LearningHeaderUserMenuItems = function LearningHeaderUserMenuItems(_ref) {
-  var items = _ref.items;
-  return items.map(function (item, index) {
-    var isSignOut = item.href === getConfig().LOGOUT_URL;
+const LearningHeaderUserMenuItems = _ref => {
+  let {
+    items
+  } = _ref;
+  return items.map((item, index) => {
+    const isSignOut = item.href === getConfig().LOGOUT_URL;
     return /*#__PURE__*/React.createElement(Dropdown.Item, {
-      key: "menu-item-".concat(index),
+      key: `menu-item-${index}`,
       href: item.href,
       className: isSignOut ? 'sign-out-item' : ''
     }, item.message);
   });
 };
-export var learningHeaderUserMenuDataShape = {
+export const learningHeaderUserMenuDataShape = {
   items: PropTypes.arrayOf(PropTypes.shape({
     message: PropTypes.string,
     href: PropTypes.string
