@@ -2,34 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, MenuTrigger, MenuContent } from '../Menu';
 import { CaretIcon } from '../Icons';
-const DesktopHeaderMainOrSecondaryMenu = _ref => {
-  let {
-    menu
-  } = _ref;
+var DesktopHeaderMainOrSecondaryMenu = function DesktopHeaderMainOrSecondaryMenu(_ref) {
+  var menu = _ref.menu;
   // Nodes are accepted as a prop
   if (!Array.isArray(menu)) {
     return menu;
   }
-  return menu.map(menuItem => {
-    const {
-      type,
-      href,
-      content,
-      submenuContent,
-      disabled,
-      isActive,
-      onClick
-    } = menuItem;
+  return menu.map(function (menuItem) {
+    var type = menuItem.type,
+      href = menuItem.href,
+      content = menuItem.content,
+      submenuContent = menuItem.submenuContent,
+      disabled = menuItem.disabled,
+      isActive = menuItem.isActive,
+      onClick = menuItem.onClick;
     if (type === 'item') {
       return /*#__PURE__*/React.createElement("a", {
-        key: `${type}-${content}`,
-        className: `nav-link${disabled ? ' disabled' : ''}${isActive ? ' active' : ''}`,
+        key: "".concat(type, "-").concat(content),
+        className: "nav-link".concat(disabled ? ' disabled' : '').concat(isActive ? ' active' : ''),
         href: href,
         onClick: onClick || null
       }, content);
     }
     return /*#__PURE__*/React.createElement(Menu, {
-      key: `${type}-${content}`,
+      key: "".concat(type, "-").concat(content),
       tag: "div",
       className: "nav-item",
       respondToPointerEvents: true
@@ -47,7 +43,7 @@ const DesktopHeaderMainOrSecondaryMenu = _ref => {
     }, submenuContent));
   });
 };
-export const desktopHeaderMainOrSecondaryMenuDataShape = PropTypes.oneOfType([PropTypes.node, PropTypes.array]);
+export var desktopHeaderMainOrSecondaryMenuDataShape = PropTypes.oneOfType([PropTypes.node, PropTypes.array]);
 DesktopHeaderMainOrSecondaryMenu.propTypes = {
   menu: desktopHeaderMainOrSecondaryMenuDataShape
 };

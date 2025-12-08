@@ -7,19 +7,18 @@ import Avatar from '../Avatar';
 import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
 import { CaretIcon } from '../Icons';
 import messages from './messages';
-const AuthenticatedUserDropdown = _ref => {
-  let {
-    intl,
-    username,
-    avatar,
-    loading = false
-  } = _ref;
-  const dropdownItems = [{
+var AuthenticatedUserDropdown = function AuthenticatedUserDropdown(_ref) {
+  var intl = _ref.intl,
+    username = _ref.username,
+    avatar = _ref.avatar,
+    _ref$loading = _ref.loading,
+    loading = _ref$loading === void 0 ? false : _ref$loading;
+  var dropdownItems = [{
     message: intl.formatMessage(messages.dashboard),
-    href: `${getConfig().LMS_BASE_URL}/dashboard`
+    href: "".concat(getConfig().LMS_BASE_URL, "/dashboard")
   }, {
     message: intl.formatMessage(messages.profile),
-    href: `${getConfig().ACCOUNT_PROFILE_URL}/u/${username}`
+    href: "".concat(getConfig().ACCOUNT_PROFILE_URL, "/u/").concat(username)
   }, {
     message: intl.formatMessage(messages.account),
     href: getConfig().ACCOUNT_SETTINGS_URL

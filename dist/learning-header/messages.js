@@ -1,5 +1,5 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
-const messages = defineMessages({
+var messages = defineMessages({
   dashboard: {
     id: 'header.menu.dashboard.label',
     defaultMessage: 'Dashboard',

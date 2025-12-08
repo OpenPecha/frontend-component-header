@@ -1,25 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const MobileLoggedOutItems = _ref => {
-  let {
-    items
-  } = _ref;
-  return items.map((_ref2, i, arr) => {
-    let {
-      type,
-      href,
-      content
-    } = _ref2;
+var MobileLoggedOutItems = function MobileLoggedOutItems(_ref) {
+  var items = _ref.items;
+  return items.map(function (_ref2, i, arr) {
+    var type = _ref2.type,
+      href = _ref2.href,
+      content = _ref2.content;
     return /*#__PURE__*/React.createElement("li", {
       className: "nav-item px-3 my-2",
-      key: `${type}-${content}`
+      key: "".concat(type, "-").concat(content)
     }, /*#__PURE__*/React.createElement("a", {
       className: i < arr.length - 1 ? 'btn btn-block btn-outline-primary' : 'btn btn-block btn-primary',
       href: href
     }, content));
   });
 };
-export const mobileHeaderLoggedOutItemsDataShape = PropTypes.arrayOf(PropTypes.shape({
+export var mobileHeaderLoggedOutItemsDataShape = PropTypes.arrayOf(PropTypes.shape({
   type: PropTypes.oneOf(['item', 'menu']),
   href: PropTypes.string,
   content: PropTypes.string
