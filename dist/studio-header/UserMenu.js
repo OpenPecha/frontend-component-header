@@ -4,15 +4,18 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Avatar } from '@openedx/paragon';
 import NavDropdownMenu from './NavDropdownMenu';
 import getUserMenuItems from './utils';
-var UserMenu = function UserMenu(_ref) {
-  var username = _ref.username,
-    studioBaseUrl = _ref.studioBaseUrl,
-    logoutUrl = _ref.logoutUrl,
-    authenticatedUserAvatar = _ref.authenticatedUserAvatar,
-    isMobile = _ref.isMobile,
-    isAdmin = _ref.isAdmin,
-    intl = _ref.intl;
-  var avatar = authenticatedUserAvatar ? /*#__PURE__*/React.createElement("img", {
+const UserMenu = _ref => {
+  let {
+    username,
+    studioBaseUrl,
+    logoutUrl,
+    authenticatedUserAvatar,
+    isMobile,
+    isAdmin,
+    // injected
+    intl
+  } = _ref;
+  const avatar = authenticatedUserAvatar ? /*#__PURE__*/React.createElement("img", {
     className: "d-block w-100 h-100",
     src: authenticatedUserAvatar,
     alt: username,
@@ -23,15 +26,15 @@ var UserMenu = function UserMenu(_ref) {
     alt: username,
     "data-testid": "avatar-icon"
   });
-  var title = isMobile ? avatar : /*#__PURE__*/React.createElement(React.Fragment, null, avatar, username);
+  const title = isMobile ? avatar : /*#__PURE__*/React.createElement(React.Fragment, null, avatar, username);
   return /*#__PURE__*/React.createElement(NavDropdownMenu, {
     buttonTitle: title,
     id: "user-dropdown-menu",
     items: getUserMenuItems({
-      studioBaseUrl: studioBaseUrl,
-      logoutUrl: logoutUrl,
-      intl: intl,
-      isAdmin: isAdmin
+      studioBaseUrl,
+      logoutUrl,
+      intl,
+      isAdmin
     })
   });
 };

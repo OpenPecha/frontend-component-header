@@ -1,8 +1,10 @@
 import React from 'react';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 import MobileLoggedOutItems, { mobileHeaderLoggedOutItemsDataShape } from '../../mobile-header/MobileLoggedOutItems';
-var MobileLoggedOutItemsSlot = function MobileLoggedOutItemsSlot(_ref) {
-  var items = _ref.items;
+const MobileLoggedOutItemsSlot = _ref => {
+  let {
+    items
+  } = _ref;
   return /*#__PURE__*/React.createElement(PluginSlot, {
     id: "mobile_logged_out_items_slot",
     slotOptions: {
