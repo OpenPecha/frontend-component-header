@@ -83,6 +83,10 @@ const Header = ({
       //   href: config.ORDER_HISTORY_URL,
       //   content: intl.formatMessage(messages['header.user.menu.order.history']),
       // }] : []),
+    ],
+  }, {
+    heading: '',
+    items: [
       {
         type: 'item',
         href: config.LOGOUT_URL,
