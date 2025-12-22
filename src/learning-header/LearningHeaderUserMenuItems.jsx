@@ -4,13 +4,28 @@ import { getConfig } from '@edx/frontend-platform';
 
 import { Dropdown } from '@openedx/paragon';
 
-const LearningHeaderUserMenuItems = ({ items }) => items.map((item, index) => {
+const LearningHeaderUserMenuItems = ({ items }) => items.flatMap((item, index) => {
   const isSignOut = item.href === getConfig().LOGOUT_URL;
+
+  if (isSignOut) {
+    return [
+      <Dropdown.Divider key={`menu-divider-${index}`} />,
+      (
+        <Dropdown.Item
+          key={`menu-item-${index}`}
+          href={item.href}
+          className="sign-out-item"
+        >
+          {item.message}
+        </Dropdown.Item>
+      ),
+    ];
+  }
+
   return (
     <Dropdown.Item
       key={`menu-item-${index}`}
       href={item.href}
-      className={isSignOut ? 'sign-out-item' : ''}
     >
       {item.message}
     </Dropdown.Item>

@@ -55,17 +55,13 @@ const Header = _ref => {
     heading: '',
     items: [{
       type: 'item',
-      href: `${config.LMS_BASE_URL}/dashboard`,
-      content: intl.formatMessage(messages['header.user.menu.dashboard'])
-    }, {
-      type: 'item',
       href: `${config.ACCOUNT_PROFILE_URL}/u/${authenticatedUser.username}`,
       content: intl.formatMessage(messages['header.user.menu.profile'])
     }, {
       type: 'item',
       href: config.ACCOUNT_SETTINGS_URL,
       content: intl.formatMessage(messages['header.user.menu.account.settings'])
-    },
+    }
     // Order History link removed
     // Uncomment the following lines if you want to re-enable Order History
     // ...(config.ORDER_HISTORY_URL ? [{
@@ -73,7 +69,10 @@ const Header = _ref => {
     //   href: config.ORDER_HISTORY_URL,
     //   content: intl.formatMessage(messages['header.user.menu.order.history']),
     // }] : []),
-    {
+    ]
+  }, {
+    heading: '',
+    items: [{
       type: 'item',
       href: config.LOGOUT_URL,
       content: intl.formatMessage(messages['header.user.menu.logout'])

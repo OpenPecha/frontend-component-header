@@ -6,12 +6,20 @@ const LearningHeaderUserMenuItems = _ref => {
   let {
     items
   } = _ref;
-  return items.map((item, index) => {
+  return items.flatMap((item, index) => {
     const isSignOut = item.href === getConfig().LOGOUT_URL;
+    if (isSignOut) {
+      return [/*#__PURE__*/React.createElement(Dropdown.Divider, {
+        key: `menu-divider-${index}`
+      }), /*#__PURE__*/React.createElement(Dropdown.Item, {
+        key: `menu-item-${index}`,
+        href: item.href,
+        className: "sign-out-item"
+      }, item.message)];
+    }
     return /*#__PURE__*/React.createElement(Dropdown.Item, {
       key: `menu-item-${index}`,
-      href: item.href,
-      className: isSignOut ? 'sign-out-item' : ''
+      href: item.href
     }, item.message);
   });
 };

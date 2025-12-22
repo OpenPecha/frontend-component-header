@@ -68,11 +68,6 @@ const Header = ({
     items: [
       {
         type: 'item',
-        href: `${config.LMS_BASE_URL}/dashboard`,
-        content: intl.formatMessage(messages['header.user.menu.dashboard']),
-      },
-      {
-        type: 'item',
         href: `${config.ACCOUNT_PROFILE_URL}/u/${authenticatedUser.username}`,
         content: intl.formatMessage(messages['header.user.menu.profile']),
       },
@@ -88,6 +83,10 @@ const Header = ({
       //   href: config.ORDER_HISTORY_URL,
       //   content: intl.formatMessage(messages['header.user.menu.order.history']),
       // }] : []),
+    ],
+  }, {
+    heading: '',
+    items: [
       {
         type: 'item',
         href: config.LOGOUT_URL,

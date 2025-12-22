@@ -153,7 +153,6 @@ $rounded-pill: 50rem !default;
     
       .sign-out-item {
         margin-top: 0.5rem;
-        border-top: 1px solid #e1e1e1;
         padding-top: 0.5rem;
       }
   }
@@ -295,7 +294,7 @@ $rounded-pill: 50rem !default;
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 100%;
+        width: 95%;
         height: 3px;
         background-color: #FC8044;
       }

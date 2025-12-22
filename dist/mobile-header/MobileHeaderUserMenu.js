@@ -4,7 +4,9 @@ const MobileHeaderUserMenu = _ref => {
   let {
     menu
   } = _ref;
-  return menu.map(group => group.items.map(_ref2 => {
+  return menu.map((group, index) => /*#__PURE__*/React.createElement(React.Fragment, {
+    key: index
+  }, group.items.map(_ref2 => {
     let {
       type,
       content,
@@ -21,7 +23,10 @@ const MobileHeaderUserMenu = _ref => {
       href: href,
       onClick: onClick || null
     }, content));
-  }));
+  }), index < menu.length - 1 && /*#__PURE__*/React.createElement("li", {
+    className: "dropdown-divider",
+    role: "separator"
+  })));
 };
 export const mobileHeaderUserMenuDataShape = PropTypes.arrayOf(PropTypes.shape({
   heading: PropTypes.string,
