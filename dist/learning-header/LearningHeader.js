@@ -109,7 +109,7 @@ const LearningHeader = _ref => {
   }, headerLogo, /*#__PURE__*/React.createElement("div", {
     className: "flex-grow-1 course-title-lockup d-flex",
     style: {
-      lineHeight: 1
+      lineHeight: 1.2
     }
   }, /*#__PURE__*/React.createElement(CourseInfoSlot, {
     courseOrg: courseOrg,

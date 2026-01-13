@@ -82,7 +82,7 @@ const LearningHeader = ({
       <a className="sr-only sr-only-focusable" href="#main-content">{intl.formatMessage(messages.skipNavLink)}</a>
       <div className="container-xl py-2 d-flex align-items-center">
         {headerLogo}
-        <div className="flex-grow-1 course-title-lockup d-flex" style={{ lineHeight: 1 }}>
+        <div className="flex-grow-1 course-title-lockup d-flex" style={{ lineHeight: 1.2 }}>
           <CourseInfoSlot courseOrg={courseOrg} courseNumber={courseNumber} courseTitle={courseTitle} />
         </div>
         {showUserDropdown && authenticatedUser && (
