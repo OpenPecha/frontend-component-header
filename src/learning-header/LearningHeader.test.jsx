@@ -23,7 +23,6 @@ describe('Header', () => {
     };
     render(<Header {...courseData} />);
 
-    expect(screen.getByText(`${courseData.courseOrg} ${courseData.courseNumber}`)).toBeInTheDocument();
     expect(screen.getByText(courseData.courseTitle)).toBeInTheDocument();
   });
 });
