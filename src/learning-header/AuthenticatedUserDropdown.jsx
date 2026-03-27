@@ -41,7 +41,7 @@ const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) 
   return (
     <Dropdown className="user-dropdown ml-3">
       <Dropdown.Toggle variant="outline-primary" aria-label={intl.formatMessage(messages.userOptionsDropdownLabel)}>
-        <LearningUserMenuToggleSlot label={username} icon={faUserCircle} />
+        <LearningUserMenuToggleSlot label={username} icon={faUserCircle} avatar={avatar} loading={loading} />
       </Dropdown.Toggle>
       <Dropdown.Menu className="dropdown-menu-right user-dropdown-menu">
         <LearningUserMenuSlot items={dropdownItems} />

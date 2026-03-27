@@ -5,7 +5,7 @@ import LearningUserMenuToggle, {
 } from '../../learning-header/LearningUserMenuToggle';
 
 const LearningUserMenuToggleSlot = ({
-  label, icon,
+  label, icon, avatar, loading,
 }) => (
   <PluginSlot
     id="org.openedx.frontend.layout.header_learning_user_menu_toggle.v1"
@@ -13,7 +13,7 @@ const LearningUserMenuToggleSlot = ({
       mergeProps: true,
     }}
   >
-    <LearningUserMenuToggle label={label} icon={icon} />
+    <LearningUserMenuToggle label={label} icon={icon} avatar={avatar} loading={loading} />
   </PluginSlot>
 );
 

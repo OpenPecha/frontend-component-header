@@ -80,16 +80,22 @@ $rounded-pill: 50rem !default;
     display: flex;
     align-items: center;
     
-    .btn {
-      height: auto;
-      display: flex;
-      align-items: center;
-      padding: 0.75rem 1.25rem;
-      border-radius: 20px;
-      transition: all 0.2s ease;
-      border: none !important;
-      outline: none !important;
+    button.btn,
+    button.btn-outline-primary,
+    button.dropdown-toggle,
+    .btn.btn-outline-primary.dropdown-toggle {
+      height: auto !important;
+      display: flex !important;
+      align-items: center !important;
+      padding: 0.75rem 1.25rem !important;
+      border-radius: 20px !important;
+      transition: all 0.2s ease !important;
+      border: 0 !important;
+      border-width: 0 !important;
+      outline: 0 !important;
+      outline-width: 0 !important;
       box-shadow: none !important;
+      background-color: transparent !important;
       
       &:focus,
       &:active,
@@ -97,8 +103,10 @@ $rounded-pill: 50rem !default;
       &:focus-visible,
       &:focus-within,
       &[aria-expanded="true"] {
-        outline: none !important;
-        border: none !important;
+        outline: 0 !important;
+        outline-width: 0 !important;
+        border: 0 !important;
+        border-width: 0 !important;
         box-shadow: none !important;
         background-color: transparent !important;
       }
@@ -106,23 +114,24 @@ $rounded-pill: 50rem !default;
       &:hover:not(.show):not([aria-expanded="true"]) {
         background-color: #F2F4F6 !important;
         box-shadow: none !important;
+        border: 0 !important;
+        border-width: 0 !important;
+        outline: 0 !important;
       }
       
       &:active,
       &.show,
       &[aria-expanded="true"] {
         background-color: transparent !important;
-        border: none !important;
-        outline: none !important;
+        border: 0 !important;
+        border-width: 0 !important;
+        outline: 0 !important;
+        outline-width: 0 !important;
+        box-shadow: none !important;
       }
-    }
-    
-    .dropdown-toggle {
-      border: none !important;
-      outline: none !important;
       
       &::after {
-        border: none !important;
+        display: none !important;
       }
     }
   }
