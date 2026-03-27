@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
-import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 
 import LearningUserMenuToggleSlot from '../plugin-slots/LearningUserMenuToggleSlot';
