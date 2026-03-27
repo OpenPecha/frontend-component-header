@@ -33,18 +33,27 @@ $rounded-pill: 50rem !default;
 
 .learning-header {
   min-width: 0;
-  height: 4.6rem; // Increased height
-  padding-top: 0.3rem; // Add space between text and top of header
-  border-bottom: 1px solid #FFAF66; // Add orange border at the bottom
+  height: 4.5rem;
+  border-bottom: 1px solid #FFAF66;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 
-  // Increase logo size in learning header
+  .container-xl {
+    height: 100%;
+  }
+
   .logo {
+    display: block !important;
+    box-sizing: content-box !important;
+    position: relative !important;
+    top: -1px !important;
+    margin-top: 0.1rem !important;
     height: 3.03rem !important;
-    padding-top: -0.3rem !important;
+    padding: calc(var(--pgn-spacing-spacer-base, $spacer) * 0.75) 0 !important;
     padding-left: calc(var(--pgn-spacing-spacer-base, $spacer) * 1.75) !important;
     margin-right: var(--pgn-spacing-spacer-base, $spacer) !important;
 
     img {
+      display: block;
       height: 100% !important;
       width: auto !important;
     }
@@ -54,20 +63,68 @@ $rounded-pill: 50rem !default;
     min-width: 0;
     display: flex;
     align-items: center;
+    height: 100%;
 
     span.course-title {
       white-space: normal;
       word-break: break-word;
       line-height: 1.4;
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
+      padding: 1.43rem var(--pgn-spacing-spacer-base, $spacer);
+      font-weight: 500;
+      letter-spacing: .01em;
     }
   }
 
-  .user-dropdown .btn {
-    height: 6rem; // Increased to match header height
+  .user-dropdown {
+    height: 100%;
     display: flex;
     align-items: center;
+    
+    .btn {
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      
+      &:focus,
+      &:active,
+      &.show,
+      &:focus-visible,
+      &:focus-within,
+      &[aria-expanded="true"] {
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+      }
+
+      &:hover:not(.show):not([aria-expanded="true"]) {
+        background-color: #F2F4F6 !important;
+        box-shadow: none !important;
+      }
+      
+      &:active,
+      &.show,
+      &[aria-expanded="true"] {
+        background-color: transparent !important;
+        border: none !important;
+        outline: none !important;
+      }
+    }
+    
+    .dropdown-toggle {
+      border: none !important;
+      outline: none !important;
+      
+      &::after {
+        border: none !important;
+      }
+    }
   }
 
   // Styling for avatar dropdown button - matching site-header-desktop
