@@ -6,7 +6,8 @@ const MobileHeaderSlot = _ref => {
     props
   } = _ref;
   return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "mobile_header_slot",
+    id: "org.openedx.frontend.layout.header_mobile.v1",
+    idAliases: ['mobile_header_slot'],
     slotOptions: {
       mergeProps: true
     }

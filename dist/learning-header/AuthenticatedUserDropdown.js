@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { getConfig } from '@edx/frontend-platform';
+import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Dropdown } from '@openedx/paragon';
-import Avatar from '../Avatar';
+import LearningUserMenuToggleSlot from '../plugin-slots/LearningUserMenuToggleSlot';
 import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
 import { CaretIcon } from '../Icons';
 import messages from './messages';
@@ -37,26 +38,13 @@ const AuthenticatedUserDropdown = _ref => {
   return /*#__PURE__*/React.createElement(Dropdown, {
     className: "user-dropdown ml-3"
   }, /*#__PURE__*/React.createElement(Dropdown.Toggle, {
-    as: "button",
-    bsPrefix: "custom-dropdown-toggle",
-    className: "border-0 bg-transparent d-inline-flex align-items-center px-3 py-2",
-    style: {
-      color: '#093055'
-    }
-  }, /*#__PURE__*/React.createElement(Avatar, {
-    size: "1.9rem",
-    src: avatar,
-    alt: "",
-    className: "mr-2",
+    variant: "outline-primary",
+    "aria-label": intl.formatMessage(messages.userOptionsDropdownLabel)
+  }, /*#__PURE__*/React.createElement(LearningUserMenuToggleSlot, {
+    label: username,
+    icon: faUserCircle,
+    avatar: avatar,
     loading: loading
-  }), /*#__PURE__*/React.createElement("span", {
-    "data-hj-suppress": true,
-    className: "d-none d-md-inline"
-  }, username), /*#__PURE__*/React.createElement(CaretIcon, {
-    role: "img",
-    "aria-hidden": true,
-    focusable: "false",
-    className: "ml-1"
   })), /*#__PURE__*/React.createElement(Dropdown.Menu, {
     className: "dropdown-menu-right user-dropdown-menu"
   }, /*#__PURE__*/React.createElement(LearningUserMenuSlot, {

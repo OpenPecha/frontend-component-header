@@ -6,7 +6,8 @@ const MobileLoggedOutItemsSlot = _ref => {
     items
   } = _ref;
   return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "mobile_logged_out_items_slot",
+    id: "org.openedx.frontend.layout.header_mobile_logged_out_items.v1",
+    idAliases: ['mobile_logged_out_items_slot'],
     slotOptions: {
       mergeProps: true
     }

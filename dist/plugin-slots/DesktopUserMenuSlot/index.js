@@ -6,7 +6,8 @@ const DesktopUserMenuSlot = _ref => {
     menu
   } = _ref;
   return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "desktop_user_menu_slot",
+    id: "org.openedx.frontend.layout.header_desktop_user_menu.v1",
+    idAliases: ['desktop_user_menu_slot'],
     slotOptions: {
       mergeProps: true
     }

@@ -105,12 +105,9 @@ const LearningHeader = _ref => {
     className: "sr-only sr-only-focusable",
     href: "#main-content"
   }, intl.formatMessage(messages.skipNavLink)), /*#__PURE__*/React.createElement("div", {
-    className: "container-xl py-2 d-flex align-items-center"
+    className: "container-xl d-flex align-items-center"
   }, headerLogo, /*#__PURE__*/React.createElement("div", {
-    className: "flex-grow-1 course-title-lockup d-flex",
-    style: {
-      lineHeight: 1.2
-    }
+    className: "flex-grow-1 course-title-lockup d-flex"
   }, /*#__PURE__*/React.createElement(CourseInfoSlot, {
     courseOrg: courseOrg,
     courseNumber: courseNumber,

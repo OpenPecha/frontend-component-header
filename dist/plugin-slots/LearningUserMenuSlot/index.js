@@ -6,7 +6,8 @@ const LearningUserMenuSlot = _ref => {
     items
   } = _ref;
   return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "learning_user_menu_slot",
+    id: "org.openedx.frontend.layout.header_learning_user_menu.v1",
+    idAliases: ['learning_user_menu_slot'],
     slotOptions: {
       mergeProps: true
     }

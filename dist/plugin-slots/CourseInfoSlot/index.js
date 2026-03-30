@@ -13,7 +13,8 @@ const CourseInfoSlot = _ref => {
     } = _ref,
     attributes = _objectWithoutProperties(_ref, _excluded);
   return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "course_info_slot",
+    id: "org.openedx.frontend.layout.header_learning_course_info.v1",
+    idAliases: ['course_info_slot'],
     slotOptions: {
       mergeProps: true
     },

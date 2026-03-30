@@ -4,8 +4,8 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 
 // Local Components
+import DesktopUserMenuToggleSlot from '../plugin-slots/DesktopUserMenuToggleSlot';
 import { Menu, MenuTrigger, MenuContent } from '../Menu';
-import Avatar from '../Avatar';
 import LogoSlot from '../plugin-slots/LogoSlot';
 import DesktopLoggedOutItemsSlot from '../plugin-slots/DesktopLoggedOutItemsSlot';
 import { desktopLoggedOutItemsDataShape } from './DesktopLoggedOutItems';
@@ -19,10 +19,10 @@ import { desktopUserMenuDataShape } from './DesktopHeaderUserMenu';
 import messages from '../Header.messages';
 
 // Assets
-import { CaretIcon } from '../Icons';
+
 class DesktopHeader extends React.Component {
   constructor(props) {
-    // eslint-disable-line no-useless-constructor
+    // eslint-disable-line @typescript-eslint/no-useless-constructor
     super(props);
   }
   renderMainMenu() {
@@ -60,16 +60,9 @@ class DesktopHeader extends React.Component {
       style: {
         color: '#093055'
       }
-    }, /*#__PURE__*/React.createElement(Avatar, {
-      size: "1.9rem",
-      src: avatar,
-      alt: "",
-      className: "mr-2",
-      loading: this.props.avatarLoading
-    }), username, " ", /*#__PURE__*/React.createElement(CaretIcon, {
-      role: "img",
-      "aria-hidden": true,
-      focusable: "false"
+    }, /*#__PURE__*/React.createElement(DesktopUserMenuToggleSlot, {
+      avatar: avatar,
+      label: username
     })), /*#__PURE__*/React.createElement(MenuContent, {
       className: "mb-0 dropdown-menu show dropdown-menu-right pin-right shadow py-2"
     }, /*#__PURE__*/React.createElement(DesktopUserMenuSlot, {
@@ -130,15 +123,15 @@ export const desktopHeaderDataShape = {
 };
 DesktopHeader.propTypes = {
   mainMenu: desktopHeaderDataShape.mainMenu,
-  secondaryMenu: desktopHeaderDataShape.secondaryMenumainMenu,
-  userMenu: desktopHeaderDataShape.userMenumainMenu,
-  loggedOutItems: desktopHeaderDataShape.loggedOutItemsmainMenu,
-  logo: desktopHeaderDataShape.logomainMenu,
-  logoAltText: desktopHeaderDataShape.logoAltTextmainMenu,
-  logoDestination: desktopHeaderDataShape.logoDestinationmainMenu,
-  avatar: desktopHeaderDataShape.avatarmainMenu,
-  username: desktopHeaderDataShape.usernamemainMenu,
-  loggedIn: desktopHeaderDataShape.loggedInmainMenu,
+  secondaryMenu: desktopHeaderDataShape.secondaryMenu,
+  userMenu: desktopHeaderDataShape.userMenu,
+  loggedOutItems: desktopHeaderDataShape.loggedOutItems,
+  logo: desktopHeaderDataShape.logo,
+  logoAltText: desktopHeaderDataShape.logoAltText,
+  logoDestination: desktopHeaderDataShape.logoDestination,
+  avatar: desktopHeaderDataShape.avatar,
+  username: desktopHeaderDataShape.username,
+  loggedIn: desktopHeaderDataShape.loggedIn,
   // i18n
   intl: intlShape.isRequired
 };

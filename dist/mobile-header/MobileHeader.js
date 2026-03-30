@@ -5,8 +5,8 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 
 // Local Components
+import MobileUserMenuToggleSlot from '../plugin-slots/MobileUserMenuToggleSlot';
 import { Menu, MenuTrigger, MenuContent } from '../Menu';
-import Avatar from '../Avatar';
 import LogoSlot from '../plugin-slots/LogoSlot';
 import MobileLoggedOutItemsSlot from '../plugin-slots/MobileLoggedOutItemsSlot';
 import { mobileHeaderLoggedOutItemsDataShape } from './MobileLoggedOutItems';
@@ -22,7 +22,7 @@ import messages from '../Header.messages';
 import { MenuIcon } from '../Icons';
 class MobileHeader extends React.Component {
   constructor(props) {
-    // eslint-disable-line no-useless-constructor
+    // eslint-disable-line @typescript-eslint/no-useless-constructor
     super(props);
   }
   renderMainMenu() {
@@ -50,14 +50,22 @@ class MobileHeader extends React.Component {
       items: loggedOutItems
     });
   }
+  renderUserMenuToggle() {
+    const {
+      avatar,
+      username
+    } = this.props;
+    return /*#__PURE__*/React.createElement(MobileUserMenuToggleSlot, {
+      avatar: avatar,
+      label: username
+    });
+  }
   render() {
     const {
       logo,
       logoAltText,
       logoDestination,
       loggedIn,
-      avatar,
-      username,
       stickyOnMobile,
       intl,
       mainMenu,
@@ -113,12 +121,7 @@ class MobileHeader extends React.Component {
       className: "icon-button",
       "aria-label": intl.formatMessage(messages['header.label.account.menu']),
       title: intl.formatMessage(messages['header.label.account.menu'])
-    }, /*#__PURE__*/React.createElement(Avatar, {
-      size: "1.5rem",
-      src: avatar,
-      alt: username,
-      loading: this.props.avatarLoading
-    })), /*#__PURE__*/React.createElement(MenuContent, {
+    }, this.renderUserMenuToggle()), /*#__PURE__*/React.createElement(MenuContent, {
       tag: "ul",
       className: "nav flex-column pin-left pin-right border-top shadow py-2"
     }, loggedIn ? this.renderUserMenuItems() : this.renderLoggedOutItems()))) : null);
