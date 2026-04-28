@@ -1,19 +1,17 @@
 import React from 'react';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 import MobileHeaderUserMenu, { mobileHeaderUserMenuDataShape } from '../../mobile-header/MobileHeaderUserMenu';
-const MobileUserMenuSlot = _ref => {
-  let {
-    menu
-  } = _ref;
-  return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "mobile_user_menu_slot",
-    slotOptions: {
-      mergeProps: true
-    }
-  }, /*#__PURE__*/React.createElement(MobileHeaderUserMenu, {
-    menu: menu
-  }));
-};
+const MobileUserMenuSlot = ({
+  menu
+}) => /*#__PURE__*/React.createElement(PluginSlot, {
+  id: "org.openedx.frontend.layout.header_mobile_user_menu.v1",
+  idAliases: ['mobile_user_menu_slot'],
+  slotOptions: {
+    mergeProps: true
+  }
+}, /*#__PURE__*/React.createElement(MobileHeaderUserMenu, {
+  menu: menu
+}));
 MobileUserMenuSlot.propTypes = {
   menu: mobileHeaderUserMenuDataShape
 };

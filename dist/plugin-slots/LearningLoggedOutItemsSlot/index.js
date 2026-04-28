@@ -1,19 +1,17 @@
 import React from 'react';
 import { PluginSlot } from '@openedx/frontend-plugin-framework';
 import LearningLoggedOutButtons, { learningHeaderLoggedOutItemsDataShape } from '../../learning-header/LearningLoggedOutButtons';
-const LearningLoggedOutItemsSlot = _ref => {
-  let {
-    buttonsInfo
-  } = _ref;
-  return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "learning_logged_out_items_slot",
-    slotOptions: {
-      mergeProps: true
-    }
-  }, /*#__PURE__*/React.createElement(LearningLoggedOutButtons, {
-    buttonsInfo: buttonsInfo
-  }));
-};
+const LearningLoggedOutItemsSlot = ({
+  buttonsInfo
+}) => /*#__PURE__*/React.createElement(PluginSlot, {
+  id: "org.openedx.frontend.layout.header_learning_logged_out_items.v1",
+  idAliases: ['learning_logged_out_items_slot'],
+  slotOptions: {
+    mergeProps: true
+  }
+}, /*#__PURE__*/React.createElement(LearningLoggedOutButtons, {
+  buttonsInfo: buttonsInfo
+}));
 LearningLoggedOutItemsSlot.propTypes = learningHeaderLoggedOutItemsDataShape;
 export default LearningLoggedOutItemsSlot;
 //# sourceMappingURL=index.js.map

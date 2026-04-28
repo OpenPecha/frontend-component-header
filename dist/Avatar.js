@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AvatarIcon } from './Icons';
-const Avatar = _ref => {
-  let {
-    size,
-    src,
-    alt,
-    className,
-    loading
-  } = _ref;
+const Avatar = ({
+  size,
+  src,
+  alt,
+  className,
+  loading
+}) => {
   // While loading, render a placeholder to prevent the default icon from flashing.
   if (loading) {
     return /*#__PURE__*/React.createElement("span", {

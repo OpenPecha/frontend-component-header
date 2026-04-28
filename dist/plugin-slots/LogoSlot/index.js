@@ -13,7 +13,8 @@ const LogoSlot = _ref => {
     } = _ref,
     attributes = _objectWithoutProperties(_ref, _excluded);
   return /*#__PURE__*/React.createElement(PluginSlot, {
-    id: "logo_slot",
+    id: "org.openedx.frontend.layout.header_logo.v1",
+    idAliases: ['logo_slot'],
     slotOptions: {
       mergeProps: true
     }

@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, MenuTrigger, MenuContent } from '../Menu';
 import { CaretIcon } from '../Icons';
-const DesktopHeaderMainOrSecondaryMenu = _ref => {
-  let {
-    menu
-  } = _ref;
+const DesktopHeaderMainOrSecondaryMenu = ({
+  menu
+}) => {
   // Nodes are accepted as a prop
   if (!Array.isArray(menu)) {
     return menu;

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Responsive from 'react-responsive';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import { APP_CONFIG_INITIALIZED, ensureConfig, mergeConfig, getConfig, subscribe } from '@edx/frontend-platform';
 import PropTypes from 'prop-types';
@@ -30,17 +30,16 @@ subscribe(APP_CONFIG_INITIALIZED, () => {
  * @param {list} userMenuItems - The list of user menu items to display.
  * See the documentation for the structure of user menu item.
  */
-const Header = _ref => {
-  let {
-    intl,
-    mainMenuItems,
-    secondaryMenuItems,
-    userMenuItems
-  } = _ref;
+const Header = ({
+  mainMenuItems,
+  secondaryMenuItems,
+  userMenuItems
+}) => {
   const {
     authenticatedUser,
     config
   } = useContext(AppContext);
+  const intl = useIntl();
 
   // Check if user is authenticated
 
@@ -186,7 +185,6 @@ Header.defaultProps = {
   userMenuItems: null
 };
 Header.propTypes = {
-  intl: intlShape.isRequired,
   mainMenuItems: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   secondaryMenuItems: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   userMenuItems: PropTypes.arrayOf(PropTypes.shape({
@@ -199,5 +197,5 @@ Header.propTypes = {
     }))
   }))
 };
-export default injectIntl(Header);
+export default Header;
 //# sourceMappingURL=Header.js.map

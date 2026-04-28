@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, MenuTrigger, MenuContent } from '../Menu';
-const MobileHeaderMainMenu = _ref => {
-  let {
-    menu
-  } = _ref;
+const MobileHeaderMainMenu = ({
+  menu
+}) => {
   // Nodes are accepted as a prop
   if (!Array.isArray(menu)) {
     return menu;

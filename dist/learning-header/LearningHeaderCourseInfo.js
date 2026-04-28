@@ -24,12 +24,11 @@ const renderMixedText = text => {
   }
   return parts.length > 0 ? parts : text;
 };
-const LearningHeaderCourseInfo = _ref => {
-  let {
-    courseOrg,
-    courseNumber,
-    courseTitle
-  } = _ref;
+const LearningHeaderCourseInfo = ({
+  courseOrg,
+  courseNumber,
+  courseTitle
+}) => {
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minWidth: 0

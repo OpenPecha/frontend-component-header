@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import AnonymousUserMenu from './AnonymousUserMenu';
 import AuthenticatedUserDropdown from './AuthenticatedUserDropdown';
@@ -11,17 +11,15 @@ import { courseInfoDataShape } from './LearningHeaderCourseInfo';
 import messages from './messages';
 import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
 import UserbackWidget from '../UserbackWidget';
-const LearningHeader = _ref => {
-  let {
-    courseOrg,
-    courseNumber,
-    courseTitle,
-    intl,
-    showUserDropdown
-  } = _ref;
+const LearningHeader = ({
+  courseOrg,
+  courseNumber,
+  courseTitle,
+  showUserDropdown
+}) => {
+  const intl = useIntl();
   const {
-    authenticatedUser,
-    config
+    authenticatedUser
   } = useContext(AppContext);
 
   // State for avatar URL and loading state
@@ -56,7 +54,7 @@ const LearningHeader = _ref => {
         const response = await fetch(apiUrl, {
           credentials: 'include',
           headers: {
-            'Accept': 'application/json'
+            Accept: 'application/json'
           }
         });
         if (response.ok) {
@@ -125,7 +123,6 @@ LearningHeader.propTypes = {
   courseOrg: courseInfoDataShape.courseOrg,
   courseNumber: courseInfoDataShape.courseNumber,
   courseTitle: courseInfoDataShape.courseTitle,
-  intl: intlShape.isRequired,
   showUserDropdown: PropTypes.bool
 };
 LearningHeader.defaultProps = {
@@ -134,5 +131,5 @@ LearningHeader.defaultProps = {
   courseTitle: null,
   showUserDropdown: true
 };
-export default injectIntl(LearningHeader);
+export default LearningHeader;
 //# sourceMappingURL=LearningHeader.js.map

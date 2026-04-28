@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { injectIntl } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 import Avatar from '../Avatar';
 import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
 import { CaretIcon } from '../Icons';
 import messages from './messages';
-const AuthenticatedUserDropdown = _ref => {
-  let {
-    intl,
-    username,
-    avatar,
-    loading = false
-  } = _ref;
+const AuthenticatedUserDropdown = ({
+  intl,
+  username,
+  avatar,
+  loading = false
+}) => {
   const dropdownItems = [{
     message: intl.formatMessage(messages.dashboard),
     href: `${getConfig().LMS_BASE_URL}/dashboard`
@@ -64,7 +63,9 @@ const AuthenticatedUserDropdown = _ref => {
   })));
 };
 AuthenticatedUserDropdown.propTypes = {
-  intl: intlShape.isRequired,
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func.isRequired
+  }).isRequired,
   username: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   loading: PropTypes.bool
