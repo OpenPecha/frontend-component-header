@@ -20,6 +20,7 @@ const StudioHeader = ({
   number, org, title, containerProps, isHiddenMainMenu, mainMenuDropdowns,
   outlineLink, searchButtonAction, isNewHomePage,
 }) => {
+  // @ts-expect-error - frontend-platform doesn't yet have type information :/
   const { authenticatedUser, config } = useContext(AppContext);
   const props = {
     logo: config.LOGO_URL,

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Responsive from 'react-responsive';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import {
   APP_CONFIG_INITIALIZED,
@@ -48,9 +48,10 @@ subscribe(APP_CONFIG_INITIALIZED, () => {
  * See the documentation for the structure of user menu item.
  */
 const Header = ({
-  intl, mainMenuItems, secondaryMenuItems, userMenuItems,
+  mainMenuItems, secondaryMenuItems, userMenuItems,
 }) => {
   const { authenticatedUser, config } = useContext(AppContext);
+  const intl = useIntl();
 
   // Check if user is authenticated
 
@@ -194,7 +195,6 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-  intl: intlShape.isRequired,
   mainMenuItems: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.array,
@@ -214,4 +214,4 @@ Header.propTypes = {
   })),
 };
 
-export default injectIntl(Header);
+export default Header;

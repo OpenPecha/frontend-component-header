@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useIntl } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 
 import AnonymousUserMenu from './AnonymousUserMenu';
@@ -14,7 +14,10 @@ import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
 import UserbackWidget from '../UserbackWidget';
 
 const LearningHeader = ({
-  courseOrg, courseNumber, courseTitle, intl, showUserDropdown,
+  courseOrg,
+  courseNumber,
+  courseTitle,
+  showUserDropdown,
 }) => {
   const { authenticatedUser, config } = useContext(AppContext);
 
@@ -108,7 +111,6 @@ LearningHeader.propTypes = {
   courseOrg: courseInfoDataShape.courseOrg,
   courseNumber: courseInfoDataShape.courseNumber,
   courseTitle: courseInfoDataShape.courseTitle,
-  intl: intlShape.isRequired,
   showUserDropdown: PropTypes.bool,
 };
 
@@ -119,4 +121,4 @@ LearningHeader.defaultProps = {
   showUserDropdown: true,
 };
 
-export default injectIntl(LearningHeader);
+export default LearningHeader;

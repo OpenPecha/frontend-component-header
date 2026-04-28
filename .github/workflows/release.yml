@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
     - name: Setup Nodejs Env
       run: echo "NODE_VER=`cat .nvmrc`" >> $GITHUB_ENV
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
         node-version: ${{ env.NODE_VER }}
     - name: Install dependencies
@@ -25,6 +25,8 @@ jobs:
       run: make validate-no-uncommitted-package-lock-changes
     - name: Lint
       run: npm run lint
+    - name: Type check
+      run: npm run types
     - name: Test
       run: npm run test
     - name: i18n_extract

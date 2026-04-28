@@ -35,6 +35,7 @@ Requirements
 
 This component uses ``@edx/frontend-platform`` services such as i18n, analytics, configuration, and the ``AppContext`` React component, and expects that it has been loaded into a micro-frontend that has been properly initialized via ``@edx/frontend-platform``'s ``initialize`` function. `Please visit the frontend template application to see an example. <https://github.com/openedx/frontend-template-application/blob/master/src/index.jsx>`_
 
+As of version 7.x, consuming applications must support typescript.
 
 Environment Variables
 ====================
@@ -71,9 +72,9 @@ Cloning and Startup
 
     ``git clone https://github.com/openedx/frontend-component-header.git``
 
-  2. Use node v18.x.
+  2. Use node v24.x.
 
-    The current version of the micro-frontend build scripts support node 18.
+    The current version of the micro-frontend build scripts support node 24.
     Using other major versions of node *may* work, but this is unsupported.  For
     convenience, this repository includes an .nvmrc file to help in setting the
     correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.

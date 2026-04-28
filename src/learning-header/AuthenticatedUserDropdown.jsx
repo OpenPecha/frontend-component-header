@@ -58,7 +58,6 @@ const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) 
 };
 
 AuthenticatedUserDropdown.propTypes = {
-  intl: intlShape.isRequired,
   username: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   loading: PropTypes.bool,
