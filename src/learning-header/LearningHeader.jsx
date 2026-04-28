@@ -19,7 +19,8 @@ const LearningHeader = ({
   courseTitle,
   showUserDropdown,
 }) => {
-  const { authenticatedUser, config } = useContext(AppContext);
+  const intl = useIntl();
+  const { authenticatedUser } = useContext(AppContext);
 
   // State for avatar URL and loading state
   const [avatarState, setAvatarState] = useState({ loading: true, url: null });
@@ -44,7 +45,7 @@ const LearningHeader = ({
         const apiUrl = `${baseUrl}/api/user/v1/accounts/${authenticatedUser.username}`;
         const response = await fetch(apiUrl, {
           credentials: 'include',
-          headers: { 'Accept': 'application/json' },
+          headers: { Accept: 'application/json' },
         });
 
         if (response.ok) {

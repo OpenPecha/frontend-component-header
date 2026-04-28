@@ -74,27 +74,30 @@ const MobileHeader = ({
             </MenuContent>
           </Menu>
         </div>
-        {userMenu.length > 0 || loggedOutItems.length > 0 ? (
-          <div className="w-100 d-flex justify-content-end align-items-center">
-            <Menu tag="nav" aria-label={intl.formatMessage(messages['header.label.secondary.nav'])} className="position-static">
-              <MenuTrigger
-                tag="button"
-                className="icon-button"
-                aria-label={intl.formatMessage(messages['header.label.account.menu'])}
-                title={intl.formatMessage(messages['header.label.account.menu'])}
-              >
-                <Avatar size="1.5rem" src={avatar} alt={username} loading={this.props.avatarLoading} />
-              </MenuTrigger>
-              <MenuContent tag="ul" className="nav flex-column pin-left pin-right border-top shadow py-2">
-                {loggedIn ? this.renderUserMenuItems() : this.renderLoggedOutItems()}
-              </MenuContent>
-            </Menu>
-          </div>
-        ) : null}
-      </header>
-    );
-  }
-}
+      ) : null}
+      <div className={`w-100 d-flex ${logoClasses}`}>
+        <LogoSlot {...logoProps} />
+      </div>
+      {userMenu.length > 0 || loggedOutItems.length > 0 ? (
+        <div className="w-100 d-flex justify-content-end align-items-center">
+          <Menu tag="nav" aria-label={intl.formatMessage(messages['header.label.secondary.nav'])} className="position-static">
+            <MenuTrigger
+              tag="button"
+              className="icon-button"
+              aria-label={intl.formatMessage(messages['header.label.account.menu'])}
+              title={intl.formatMessage(messages['header.label.account.menu'])}
+            >
+              {renderUserMenuToggle()}
+            </MenuTrigger>
+            <MenuContent tag="ul" className="nav flex-column pin-left pin-right border-top shadow py-2">
+              {loggedIn ? renderUserMenuItems() : renderLoggedOutItems()}
+            </MenuContent>
+          </Menu>
+        </div>
+      ) : null}
+    </header>
+  );
+};
 
 export const mobileHeaderDataShape = {
   mainMenu: mobileHeaderMainMenuDataShape,

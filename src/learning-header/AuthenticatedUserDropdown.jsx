@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { injectIntl } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
 import { Dropdown } from '@openedx/paragon';
 
@@ -10,7 +10,9 @@ import { CaretIcon } from '../Icons';
 
 import messages from './messages';
 
-const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) => {
+const AuthenticatedUserDropdown = ({
+  intl, username, avatar, loading = false,
+}) => {
   const dropdownItems = [
     {
       message: intl.formatMessage(messages.dashboard),
@@ -58,6 +60,9 @@ const AuthenticatedUserDropdown = ({ intl, username, avatar, loading = false }) 
 };
 
 AuthenticatedUserDropdown.propTypes = {
+  intl: PropTypes.shape({
+    formatMessage: PropTypes.func.isRequired,
+  }).isRequired,
   username: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   loading: PropTypes.bool,
