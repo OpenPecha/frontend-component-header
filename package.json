@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/openedx/frontend-component-header#readme",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.28.5",
     "@edx/brand": "npm:@openedx/brand-openedx@^1.2.2",
     "@edx/browserslist-config": "^1.1.1",
     "@edx/frontend-platform": "^8.3.1",
