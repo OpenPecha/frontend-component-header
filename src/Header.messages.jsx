@@ -48,13 +48,13 @@ const messages = defineMessages({
   },
   'header.user.menu.login': {
     id: 'header.user.menu.login',
-    defaultMessage: 'Login',
-    description: 'Login link',
+    defaultMessage: 'Sign in',
+    description: 'Label of the header button that takes a visitor to the sign in page',
   },
   'header.user.menu.register': {
     id: 'header.user.menu.register',
-    defaultMessage: 'Sign Up',
-    description: 'Link to registration',
+    defaultMessage: 'Register for free',
+    description: 'Label of the header button that takes a visitor to the registration page',
   },
   'header.user.menu.studio.home': {
     id: 'header.user.menu.studio.home',
@@ -105,6 +105,21 @@ const messages = defineMessages({
     id: 'header.label.app.nav',
     defaultMessage: 'App',
     description: 'The aria label for the app Nav',
+  },
+  'header.label.language.menu': {
+    id: 'header.label.language.menu',
+    defaultMessage: 'Change language',
+    description: 'The aria label and tooltip for the language menu trigger',
+  },
+  'header.label.language.heading': {
+    id: 'header.label.language.heading',
+    defaultMessage: 'Language',
+    description: 'The heading above the list of languages in the language menu',
+  },
+  'header.label.brand.home': {
+    id: 'header.label.brand.home',
+    defaultMessage: '{siteName} \u2014 home',
+    description: 'The aria label for the logo and site name, which link to the home page',
   },
 });
 
