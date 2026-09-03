@@ -18,9 +18,15 @@ import messages from '../Header.messages';
  * below the collapse breakpoint: navigation links, then the language list, then
  * the account rows. One merged menu rather than the two separate ones the old
  * mobile header used.
+ *
+ * `renderItems` overrides how the logged-in rows are drawn, the same escape
+ * hatch `ProfileMenu` offers for the wide layout - the learning header uses
+ * both to route its account rows through its own plugin slot at every width.
+ * A caller that passes nothing gets the default rows.
  */
 const MobileNavMenu = ({
   navItems, userMenu, loggedOutItems, loggedIn, avatar, avatarLoading, username, name, email,
+  renderItems,
 }) => {
   const intl = useIntl();
   const triggerId = useId();
@@ -55,7 +61,7 @@ const MobileNavMenu = ({
               avatarLoading={avatarLoading}
               initials={getInitials(name, username)}
             />
-            <UserMenuItems menu={userMenu} />
+            {renderItems ? renderItems(userMenu) : <UserMenuItems menu={userMenu} />}
           </>
         ) : (
           <MobileLoggedOutMenuItems items={loggedOutItems} />
@@ -75,6 +81,7 @@ MobileNavMenu.propTypes = {
   username: PropTypes.string,
   name: PropTypes.string,
   email: PropTypes.string,
+  renderItems: PropTypes.func,
 };
 
 MobileNavMenu.defaultProps = {
@@ -87,6 +94,7 @@ MobileNavMenu.defaultProps = {
   username: null,
   name: null,
   email: null,
+  renderItems: null,
 };
 
 export default MobileNavMenu;

@@ -9,6 +9,24 @@
 
 This slot is used to replace/modify/hide the learning user menu.
 
+## Item shape
+
+> **Breaking change.** `items` used to be a flat list of `{ href, message }`. It is
+> now a list of **groups**, and each row uses `content` rather than `message`:
+>
+> ```js
+> [{ heading, items: [{ type, href, content, iconName }] }]
+> ```
+>
+> A row is separated from the group above it automatically, so sign out no longer
+> needs to be detected by its URL. `iconName` picks the row's leading glyph and is
+> a plain string hint, not a component - nothing needs importing from this package.
+> Recognised names are `dashboard`, `discover`, `wishlist`, `programs`, `profile`,
+> `account`, `signout`, `login` and `register`; an unknown or absent name simply
+> renders no icon. `signout` also carries that row's distinct styling, in every
+> language. A configuration still supplying `{ href, message }` will render blank
+> rows and must be updated.
+
 ## Examples
 
 ### Modify Items
@@ -23,17 +41,26 @@ import { PLUGIN_OPERATIONS } from '@openedx/frontend-plugin-framework';
 const modifyUserMenu = ( widget ) => {
   widget.content.items = [
     {
-      href: 'https://openedx.org/',
-      message: 'openedx.org',
+      heading: '',
+      items: [
+        {
+          type: 'item',
+          href: 'https://openedx.org/',
+          content: 'openedx.org',
+          iconName: 'dashboard',
+        },
+        {
+          type: 'item',
+          href: 'https://docs.openedx.org/en/latest/',
+          content: 'Documentation',
+        },
+        {
+          type: 'item',
+          href: 'https://discuss.openedx.org/',
+          content: 'Forums',
+        },
+      ],
     },
-    {
-      href: 'https://docs.openedx.org/en/latest/',
-      message: 'Documentation',
-    },
-    {
-      href: 'https://discuss.openedx.org/',
-      message: 'Forums',
-    }
   ];
   return widget;
 };

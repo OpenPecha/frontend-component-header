@@ -1,18 +1,36 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { getConfig } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 
-import AnonymousUserMenu from './AnonymousUserMenu';
-import AuthenticatedUserDropdown from './AuthenticatedUserDropdown';
+import AnonymousUserMenu, { useLoggedOutItems } from './AnonymousUserMenu';
 import LogoSlot from '../plugin-slots/LogoSlot';
 import CourseInfoSlot from '../plugin-slots/CourseInfoSlot';
-import { courseInfoDataShape } from './LearningHeaderCourseInfo';
-import messages from './messages';
 import LearningHelpSlot from '../plugin-slots/LearningHelpSlot';
+import LearningUserMenuSlot from '../plugin-slots/LearningUserMenuSlot';
+import LanguageMenu from '../site-header/LanguageMenu';
+import ProfileMenu from '../site-header/ProfileMenu';
+import MobileNavMenu from '../site-header/MobileNavMenu';
+import { courseInfoDataShape } from './LearningHeaderCourseInfo';
+import useAccount from '../useAccount';
 import UserbackWidget from '../UserbackWidget';
+import messages from './messages';
 
+/**
+ * The course player's header.
+ *
+ * Shares its shell and its controls with the site header - see `SiteHeader` in
+ * `../site-header/` - so the locale button, the avatar and the account menu look
+ * and behave identically in both, including the collapse into a burger below
+ * the breakpoint. What differs is what stands beside the logo: the course
+ * title here, navigation links there - so the burger has no nav-link rows of
+ * its own to show, only the language list, the account rows and, when
+ * configured, a Help row.
+ *
+ * Styling comes entirely from `@edx/brand/paragon/header`, which an application
+ * has to import for this markup to look right.
+ */
 const LearningHeader = ({
   courseOrg,
   courseNumber,
@@ -21,88 +39,134 @@ const LearningHeader = ({
 }) => {
   const intl = useIntl();
   const { authenticatedUser } = useContext(AppContext);
+  const account = useAccount();
+  const loggedOutItems = useLoggedOutItems();
 
-  // State for avatar URL and loading state
-  const [avatarState, setAvatarState] = useState({ loading: true, url: null });
+  const loggedIn = authenticatedUser !== null;
 
-  // Fetch the profile image URL from the API when the component mounts or authenticatedUser changes
-  useEffect(() => {
-    const fetchProfileImage = async () => {
-      // If the user is logged out, we are not loading, and there is no image.
-      if (authenticatedUser === null) {
-        setAvatarState({ loading: false, url: null });
-        return;
-      }
+  // The burger's only nav-link-shaped row: Help, when there's somewhere for it
+  // to go and someone signed in to see it - the same condition the wide
+  // layout's LearningHelpSlot is shown under. Read locally rather than through
+  // the slot: the burger's other rows (nav links on the site header, this
+  // header's own Help row) aren't individually slotted either, only the whole
+  // menu is.
+  const supportUrl = getConfig().SUPPORT_URL;
+  const helpNavItems = (loggedIn && supportUrl) ? [{
+    content: intl.formatMessage(messages.help),
+    href: supportUrl,
+  }] : [];
 
-      // If we don't have a username yet, remain in the loading state.
-      if (!authenticatedUser?.username) {
-        setAvatarState({ loading: true, url: null });
-        return;
-      }
-
-      try {
-        const baseUrl = getConfig().LMS_BASE_URL || '';
-        const apiUrl = `${baseUrl}/api/user/v1/accounts/${authenticatedUser.username}`;
-        const response = await fetch(apiUrl, {
-          credentials: 'include',
-          headers: { Accept: 'application/json' },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const imageUrl = data.profile_image?.image_url_medium;
-          const hasImage = data.profile_image?.has_image;
-
-          // Use the fetched image if it exists and is not a default one.
-          if (imageUrl && hasImage) {
-            setAvatarState({ loading: false, url: imageUrl });
-          } else {
-            // Otherwise, fallback to the default icon.
-            setAvatarState({ loading: false, url: null });
-          }
-        } else {
-          // If the request fails, fallback to the default icon.
-          setAvatarState({ loading: false, url: null });
-        }
-      } catch (error) {
-        // If there's an error, fallback to the default icon.
-        setAvatarState({ loading: false, url: null });
-      }
-    };
-
-    fetchProfileImage();
-  }, [authenticatedUser]);
-
-  const headerLogo = (
-    <LogoSlot
-      href={`${getConfig().LMS_BASE_URL}`}
-      src={getConfig().LOGO_URL}
-      alt={getConfig().SITE_NAME}
-    />
-  );
+  // Two groups rather than one, so the rows are drawn with a separator above sign
+  // out. `iconName` picks the leading glyph for a row: it is a hint, not a
+  // component, so an application supplying its own rows through the slot needs no
+  // import from this package, and an unknown or absent name simply renders no
+  // icon. Sign out is identified by it too, which keeps its distinct styling
+  // working in every language.
+  const userMenu = !loggedIn ? [] : [
+    {
+      heading: '',
+      items: [
+        {
+          type: 'item',
+          href: `${getConfig().LMS_BASE_URL}/dashboard`,
+          content: intl.formatMessage(messages.dashboard),
+          iconName: 'dashboard',
+        },
+        {
+          type: 'item',
+          href: `${getConfig().ACCOUNT_PROFILE_URL}/u/${authenticatedUser.username}`,
+          content: intl.formatMessage(messages.profile),
+          iconName: 'profile',
+        },
+        {
+          type: 'item',
+          href: getConfig().ACCOUNT_SETTINGS_URL,
+          content: intl.formatMessage(messages.account),
+          iconName: 'account',
+        },
+        // Order History link removed
+        // Uncomment the following lines if you want to re-enable Order History
+        // ...(getConfig().ORDER_HISTORY_URL ? [{
+        //   type: 'item',
+        //   href: getConfig().ORDER_HISTORY_URL,
+        //   content: intl.formatMessage(messages.orderHistory),
+        // }] : []),
+      ],
+    },
+    {
+      heading: '',
+      items: [
+        {
+          type: 'item',
+          href: getConfig().LOGOUT_URL,
+          content: intl.formatMessage(messages.signOut),
+          iconName: 'signout',
+        },
+      ],
+    },
+  ];
 
   return (
-    <header className="learning-header">
-      <a className="sr-only sr-only-focusable" href="#main-content">{intl.formatMessage(messages.skipNavLink)}</a>
-      <div className="container-xl py-2 d-flex align-items-center">
-        {headerLogo}
-        <div className="flex-grow-1 course-title-lockup d-flex" style={{ lineHeight: 1.2 }}>
+    <header className="site-nav site-nav-learning learning-header">
+      <a className="nav-skip sr-only sr-only-focusable" href="#main-content">
+        {intl.formatMessage(messages.skipNavLink)}
+      </a>
+
+      <div className="nav-left">
+        {showUserDropdown && (
+          <MobileNavMenu
+            navItems={helpNavItems}
+            userMenu={userMenu}
+            loggedOutItems={loggedOutItems}
+            loggedIn={loggedIn}
+            avatar={account.avatar}
+            avatarLoading={account.loading}
+            username={loggedIn ? authenticatedUser.username : null}
+            name={account.name}
+            email={account.email}
+            // Same slot the wide layout's ProfileMenu routes through, so a
+            // customised account menu looks the same at every screen width.
+            renderItems={(menu) => <LearningUserMenuSlot items={menu} />}
+          />
+        )}
+        {/*
+          The logo keeps its own slot rather than being folded into the site
+          header's brand lockup, so an application can still replace it. `Logo`
+          spreads its extra attributes after its own class, so this one wins.
+        */}
+        <LogoSlot
+          href={`${getConfig().LMS_BASE_URL}`}
+          src={getConfig().LOGO_URL}
+          alt={getConfig().SITE_NAME}
+          className="nav-brand nav-brand-learning"
+        />
+        <div className="nav-course-title course-title-lockup">
           <CourseInfoSlot courseOrg={courseOrg} courseNumber={courseNumber} courseTitle={courseTitle} />
         </div>
-        {showUserDropdown && authenticatedUser && (
-          <>
-            <LearningHelpSlot />
-            <AuthenticatedUserDropdown
-              username={authenticatedUser.username}
-              avatar={avatarState.url}
-              loading={avatarState.loading}
-            />
-          </>
-        )}
-        {showUserDropdown && !authenticatedUser && (
-          <AnonymousUserMenu />
-        )}
       </div>
+
+      {showUserDropdown && (
+        <div className="nav-actions">
+          {loggedIn && <LearningHelpSlot />}
+          <LanguageMenu />
+          {loggedIn ? (
+            <ProfileMenu
+              menu={userMenu}
+              avatar={account.avatar}
+              avatarLoading={account.loading}
+              username={authenticatedUser.username}
+              name={account.name}
+              email={account.email}
+              // The rows go through this header's own slot, so an application
+              // customising the learning account menu keeps that extension point.
+              renderItems={(menu) => <LearningUserMenuSlot items={menu} />}
+            />
+          ) : (
+            <AnonymousUserMenu />
+          )}
+        </div>
+      )}
+
       <UserbackWidget />
     </header>
   );
