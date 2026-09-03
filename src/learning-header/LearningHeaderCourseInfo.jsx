@@ -14,7 +14,9 @@ const renderMixedText = (text) => {
       parts.push(text.substring(lastIndex, match.index));
     }
     parts.push(
-      <span key={match.index} style={{ fontFamily: 'Jomolhari, serif', fontSize: '1.15em' }}>
+      // Styling lives in `@edx/brand/paragon/header` as `.course-title-tibetan`
+      // - see the comment there for why it's un-bolded and sized the way it is.
+      <span key={match.index} className="course-title-tibetan">
         {match[0]}
       </span>
     );

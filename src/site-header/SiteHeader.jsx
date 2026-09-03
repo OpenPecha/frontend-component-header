@@ -80,18 +80,6 @@ const SiteHeader = ({
       </a>
 
       <div className="nav-left">
-        <MobileNavMenu
-          navItems={navItems}
-          userMenu={userMenu}
-          loggedOutItems={loggedOutItems}
-          loggedIn={loggedIn}
-          avatar={avatar}
-          avatarLoading={avatarLoading}
-          username={username}
-          name={name}
-          email={email}
-        />
-
         <a
           className={`nav-brand${brandActive ? ' nav-brand-active' : ''}`}
           href={logoDestination}
@@ -123,6 +111,22 @@ const SiteHeader = ({
             email={email}
           />
         ) : <SiteLoggedOutItems items={loggedOutItems} />}
+        {/*
+          Last, not first: below the collapse breakpoint everything else in
+          this row is display:none, so the burger ends up the only visible
+          control - on the right, where .nav-actions already sits.
+        */}
+        <MobileNavMenu
+          navItems={navItems}
+          userMenu={userMenu}
+          loggedOutItems={loggedOutItems}
+          loggedIn={loggedIn}
+          avatar={avatar}
+          avatarLoading={avatarLoading}
+          username={username}
+          name={name}
+          email={email}
+        />
       </div>
     </header>
   );

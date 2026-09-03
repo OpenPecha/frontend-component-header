@@ -113,22 +113,6 @@ const LearningHeader = ({
       </a>
 
       <div className="nav-left">
-        {showUserDropdown && (
-          <MobileNavMenu
-            navItems={helpNavItems}
-            userMenu={userMenu}
-            loggedOutItems={loggedOutItems}
-            loggedIn={loggedIn}
-            avatar={account.avatar}
-            avatarLoading={account.loading}
-            username={loggedIn ? authenticatedUser.username : null}
-            name={account.name}
-            email={account.email}
-            // Same slot the wide layout's ProfileMenu routes through, so a
-            // customised account menu looks the same at every screen width.
-            renderItems={(menu) => <LearningUserMenuSlot items={menu} />}
-          />
-        )}
         {/*
           The logo keeps its own slot rather than being folded into the site
           header's brand lockup, so an application can still replace it. `Logo`
@@ -164,6 +148,25 @@ const LearningHeader = ({
           ) : (
             <AnonymousUserMenu />
           )}
+          {/*
+            Last, not first: below the collapse breakpoint everything else in
+            this row is display:none, so the burger ends up the only visible
+            control - on the right, where .nav-actions already sits.
+          */}
+          <MobileNavMenu
+            navItems={helpNavItems}
+            userMenu={userMenu}
+            loggedOutItems={loggedOutItems}
+            loggedIn={loggedIn}
+            avatar={account.avatar}
+            avatarLoading={account.loading}
+            username={loggedIn ? authenticatedUser.username : null}
+            name={account.name}
+            email={account.email}
+            // Same slot the wide layout's ProfileMenu routes through, so a
+            // customised account menu looks the same at every screen width.
+            renderItems={(menu) => <LearningUserMenuSlot items={menu} />}
+          />
         </div>
       )}
 
