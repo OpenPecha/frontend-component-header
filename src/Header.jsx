@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import {
@@ -12,6 +12,7 @@ import {
 import PropTypes from 'prop-types';
 import DesktopHeaderSlot from './plugin-slots/DesktopHeaderSlot';
 import UserbackWidget from './UserbackWidget';
+import useAccount from './useAccount';
 
 import messages from './Header.messages';
 
@@ -130,69 +131,11 @@ const Header = ({
     },
   ];
 
-  const [account, setAccount] = useState({
-    loading: true, avatar: null, name: null, email: null,
-  });
-
-  // Fetch the account's photo, name and email when the component mounts or
-  // authenticatedUser changes. One request covers all three: the header shows the
-  // photo (or initials derived from the name), and the account menu shows the name
-  // and email together.
-  useEffect(() => {
-    const fetchAccount = async () => {
-      // If the user is logged out, we are not loading, and there is nothing to show.
-      if (authenticatedUser === null) {
-        setAccount({
-          loading: false, avatar: null, name: null, email: null,
-        });
-        return;
-      }
-
-      // If we don't have a username yet, remain in the loading state.
-      if (!authenticatedUser?.username) {
-        setAccount({
-          loading: true, avatar: null, name: null, email: null,
-        });
-        return;
-      }
-
-      try {
-        const baseUrl = config.LMS_BASE_URL || '';
-        const apiUrl = `${baseUrl}/api/user/v1/accounts/${authenticatedUser.username}`;
-        const response = await fetch(apiUrl, {
-          credentials: 'include',
-          headers: { Accept: 'application/json' },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          // 'large' (120px) rather than 'medium' (50px): the avatar renders at
-          // 44px CSS, and a 50px source looks soft on any 2x+ display.
-          const imageUrl = data.profile_image?.image_url_large;
-          const hasImage = data.profile_image?.has_image;
-
-          setAccount({
-            loading: false,
-            // Use the fetched image only if it exists and is not a default one,
-            // otherwise fall back to initials or the generic icon.
-            avatar: imageUrl && hasImage ? imageUrl : null,
-            name: data.name || null,
-            email: data.email || null,
-          });
-        } else {
-          setAccount({
-            loading: false, avatar: null, name: null, email: null,
-          });
-        }
-      } catch (error) {
-        setAccount({
-          loading: false, avatar: null, name: null, email: null,
-        });
-      }
-    };
-
-    fetchAccount();
-  }, [authenticatedUser, config.LMS_BASE_URL]);
+  // The photo, name and email of the signed-in account: the bar shows the photo
+  // (or initials derived from the name), and the account menu shows the name and
+  // email together. Shared with the learning header, which renders the same
+  // account menu.
+  const account = useAccount();
 
   const props = {
     logo: config.LOGO_URL,

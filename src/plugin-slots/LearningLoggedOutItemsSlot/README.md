@@ -9,6 +9,21 @@
 
 This slot is used to replace/modify/hide the items shown on the learning header when the user is logged out.
 
+## Item shape
+
+> **Breaking change.** Each entry used to be `{ href, message, variant }`, where
+> `variant` was a Paragon button variant. Entries are now
+> `{ type, href, content, iconName, variant }`: `content` replaces `message`, and
+> `variant` is `'register'` (outlined) or `'signin'` (filled) rather than a Paragon
+> variant name.
+>
+> `variant` says which entry is the primary action instead of relying on order.
+> Without it, among two or more entries the last is treated as primary; a single
+> entry with no `variant` renders as the outlined style and warns, because "last of
+> the list" and "the only entry" are the same position. Set `variant` explicitly
+> whenever you supply just one. A configuration still supplying `{ href, message }`
+> will render blank buttons and must be updated.
+
 ## Examples
 
 ### Modify Items
@@ -23,17 +38,16 @@ import { PLUGIN_OPERATIONS } from '@openedx/frontend-plugin-framework';
 const modifyLoggedOutItems = ( widget ) => {
   widget.content.buttonsInfo = [
     {
+      type: 'item',
       href: 'https://docs.openedx.org/en/latest/',
-      message: 'Documentation',
+      content: 'Documentation',
+      variant: 'register',
     },
     {
-      href: 'https://discuss.openedx.org/',
-      message: 'Forums',
-    },
-    {
+      type: 'item',
       href: 'https://openedx.org/',
-      message: 'openedx.org',
-      variant: 'primary',
+      content: 'openedx.org',
+      variant: 'signin',
     },
   ];
   return widget;
