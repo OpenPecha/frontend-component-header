@@ -12,7 +12,7 @@ import { FALLBACK_LANGUAGE_CODES } from './site-header/languages';
 // Mocked to assert *what SiteHeader receives*, without needing a real footer
 // element or scroll behavior in jsdom - the hook's own logic is covered by
 // useReleaseNearFooter's own tests, this file only owns the prop threading.
-jest.mock('./site-header/useReleaseNearFooter', () => jest.fn(() => false));
+jest.mock('./site-header/useReleaseNearFooter', () => jest.fn(() => ({ inView: false, instant: false })));
 // eslint-disable-next-line import/first
 import useReleaseNearFooter from './site-header/useReleaseNearFooter';
 
