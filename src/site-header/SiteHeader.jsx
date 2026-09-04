@@ -54,7 +54,7 @@ const SiteHeader = ({
   footerSelector,
 }) => {
   const intl = useIntl();
-  const footerInView = useReleaseNearFooter(footerSelector);
+  const { inView: footerInView, instant: releaseInstantly } = useReleaseNearFooter(footerSelector);
 
   // The burger menu shows one merged list, so it needs the two menus concatenated
   // rather than passed through separately as the wide layout does. Each is checked
@@ -73,8 +73,17 @@ const SiteHeader = ({
     { siteName: siteName || logoAltText },
   );
 
+  const headerClassName = [
+    'site-nav',
+    footerInView && 'header-releases-sticky',
+    // See useReleaseNearFooter: skips the slide animation for a release that
+    // isn't the visitor's own scrolling, so an early misreading correcting
+    // itself doesn't look like the header sliding in on page load.
+    releaseInstantly && 'header-releases-sticky-instant',
+  ].filter(Boolean).join(' ');
+
   return (
-    <header className={`site-nav${footerInView ? ' header-releases-sticky' : ''}`}>
+    <header className={headerClassName}>
       <a className="nav-skip sr-only sr-only-focusable" href="#main">
         {intl.formatMessage(messages['header.label.skip.nav'])}
       </a>
